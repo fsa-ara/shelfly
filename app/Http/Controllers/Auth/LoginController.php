@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class LoginController extends Controller
@@ -28,7 +26,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->validated(), $request->boolean('remember-me'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended(default: route('dashboard'));
+            return redirect()->intended(route('dashboard'));
         }
 
         return back()->withErrors([

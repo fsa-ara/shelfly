@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
                 'required',
                 Rule::email()
                     ->preventSpoofing()
-                    ->rfcCompliant(strict: false)
+                    ->rfcCompliant(false)
                     ->validateMxRecord(),
             ],
             'password' => [
