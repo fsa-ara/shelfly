@@ -46,7 +46,7 @@
         </button>
     </form>
     <div>
-        <a href="">
+        <a href="{{ route('password.verify') }}">
             Forgot password?
         </a>
     </div>
