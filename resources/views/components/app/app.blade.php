@@ -21,7 +21,7 @@
                 <aside @class(['bg-white dark:bg-black', 'sticky size-full z-40', 'hidden'])>SIDEBAR</aside>
             </x-slot>
             <x-slot:content>
-                <main @class(['size-full'])>CONTENT</main>
+                <x-grid.main>{{ $slot }}</x-grid.main>
             </x-slot>
         </x-grid.app>
     </body>
