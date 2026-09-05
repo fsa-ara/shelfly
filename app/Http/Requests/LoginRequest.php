@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
 class LoginRequest extends FormRequest
 {
@@ -28,7 +29,9 @@ class LoginRequest extends FormRequest
                 'required',
                 Rule::email(),
             ],
-            'password' => ['required'],
+            'password' => [
+                Password::required(),
+            ],
         ];
     }
 }
