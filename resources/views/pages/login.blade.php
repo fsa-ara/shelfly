@@ -9,7 +9,7 @@
         <div @class(['px-4 py-16 mx-auto', 'sm:max-w-sm', 'lg:max-x-lg lg:mt-12'])>
             <x-heading level="1"
                        content="Sign In" />
-            <p @class(['my-8 text-center'])>Sign in to your account to access all services.</p>
+            <p @class(['my-8 text-center'])>Sign in to your {{ config('app.name') }} account to access all services.</p>
             <x-form id="sign-in-form"
                     action="{{ route('auth.login') }}"
                     method="post">
@@ -28,7 +28,7 @@
                                   required
                                   label="Password"
                                   :hasError="$hasError" />
-                    <div @class(['h-16'])>
+                    <div @class(['h-24'])>
                         <x-form.error type="email" />
                     </div>
                 </div>
@@ -46,9 +46,9 @@
                 <x-nav.link href=""
                             text="Forgot your password?" />
             </div>
-            <div @class(['flex flex-wrap gap-x-2 justify-center'])>
+            <div @class(['flex flex-wrap gap-x-2 justify-center px-4'])>
                 <p>Don't have a {{ config('app.name') }} account?</p>
-                <x-nav.link href=""
+                <x-nav.link href="{{ route('auth.register') }}"
                             text="Create a {{ config('app.name') }} account" />
             </div>
         </div>
