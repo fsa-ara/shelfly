@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Pages\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -18,4 +19,6 @@ Route::prefix('account')
             ->middleware('guest')
             ->name('auth.register');
         Route::post('sign-up', [RegisterController::class, 'create']);
+        Route::post('sign-out', [LogoutController::class, 'deauthenticate'])
+            ->name('auth.logout');
     });
