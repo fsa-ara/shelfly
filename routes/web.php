@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Pages\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +28,8 @@ Route::prefix('account')
             ->middleware('guest')
             ->name('auth.forgot-password');
         Route::post('password/verify/' . strtolower(config("app.name")) . 'id', [ForgotPasswordController::class, 'send']);
+        Route::get('password/reset/{token}', [ResetPasswordController::class, 'index'])
+            ->middleware('guest')
+            ->name('auth.reset-password');
+        Route::post('password/reset/{token}', [ResetPasswordController::class, 'update']);
     });
