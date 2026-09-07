@@ -21,4 +21,9 @@ Route::prefix('account')
         Route::post('sign-up', [RegisterController::class, 'create']);
         Route::post('sign-out', [LogoutController::class, 'deauthenticate'])
             ->name('auth.logout');
+
+        Route::get('password/verify/' . strtolower(config("app.name")) . 'id', [ForgotPasswordController::class, 'index'])
+            ->middleware('guest')
+            ->name('auth.forgot-password');
+        Route::post('password/verify/' . strtolower(config("app.name")) . 'id', [ForgotPasswordController::class, 'send']);
     });
