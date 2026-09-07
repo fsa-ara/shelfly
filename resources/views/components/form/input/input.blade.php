@@ -7,4 +7,7 @@
     @case('checkbox')
         <x-form.input.checkbox {{ $attributes }} />
     @break
+
+    @default
+        <input {{ $attributes }}>
 @endswitch
