@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Sign In">
     @php
         $hasError = $errors->has('email');
     @endphp

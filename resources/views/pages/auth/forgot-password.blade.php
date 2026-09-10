@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Forgot Password">
     @php
         $hasError = $errors->has('email');
     @endphp

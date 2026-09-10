@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Register">
     @php
         $hasEmailError = $errors->has('email');
         $hasPasswordError = $errors->has('password');

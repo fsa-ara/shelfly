@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Reset Password">
     @php
         $hasError = $errors->has('password');
     @endphp
