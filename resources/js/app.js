@@ -1,1 +1,3 @@
-console.log("App is running!");
+import { Alert } from "./components/Alert";
+
+new Alert();
