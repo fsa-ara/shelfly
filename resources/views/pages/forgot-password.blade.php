@@ -6,7 +6,7 @@
         'bg-white dark:bg-black',
         'col-span-full -mx-4 overflow-y-scroll',
     ])>
-        <div @class(['px-4 py-16 mx-auto', 'sm:max-w-sm', 'lg:max-x-lg lg:mt-12'])>
+        <div @class(['px-4 py-16 mx-auto', 'sm:max-w-sm', 'lg:mt-12'])>
             <x-heading level="1"
                        content="Forgot Password" />
             <p @class(['my-8 text-center'])>Enter the email address associated with you account so we can send you instructions on how to reset you password.</p>
