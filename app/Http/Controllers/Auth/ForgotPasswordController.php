@@ -15,7 +15,7 @@ class ForgotPasswordController extends Controller
      */
     public function index(): View
     {
-        return view('pages.forgot-password');
+        return view('pages.auth.forgot-password');
     }
 
     public function send(ForgotPasswordRequest $request): RedirectResponse

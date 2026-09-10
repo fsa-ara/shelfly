@@ -20,7 +20,7 @@ class ResetPasswordController extends Controller
     public function index(string $token): View | RedirectResponse
     {
         return session()->exists('forgot_password_email')
-            ? view('pages.reset-password', ['token' => $token])
+            ? view('pages.auth.reset-password', ['token' => $token])
             : redirect()->route('auth.forgot-password');
     }
 

@@ -15,7 +15,7 @@ class LoginController extends Controller
      */
     public function index(): View
     {
-        return view('pages.login');
+        return view('pages.auth.login');
     }
 
     public function authenticate(LoginRequest $request): RedirectResponse

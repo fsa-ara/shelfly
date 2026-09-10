@@ -17,7 +17,7 @@ class RegisterController extends Controller
      */
     public function index(): View
     {
-        return view('pages.register');
+        return view('pages.auth.register');
     }
 
     public function create(RegisterRequest $request): RedirectResponse
