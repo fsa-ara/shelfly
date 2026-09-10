@@ -9,7 +9,7 @@
          @class(['min-h-0', 'col-start-1 row-start-2'])>{{ $sidebar }}</div>
     <div id="app-content-grid"
          @class([
-             'min-h-0',
+             'min-h-0 relative',
              'col-start-1 row-start-2',
              'lg:col-start-2 lg:row-start-1 lg:row-span-full',
          ])>{{ $content }}</div>
