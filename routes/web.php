@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -21,4 +22,14 @@ Route::prefix('/account')
         Route::post('/sign-up', [RegisterController::class, 'create']);
         Route::post('/sign-out', [LogoutController::class, 'deauthenticate'])
             ->name('logout');
+
+        Route::get('/email/verify', [EmailVerificationController::class, 'index'])
+            ->middleware('auth')
+            ->name('verification.notice');
+        Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'validate'])
+            ->middleware(['auth', 'signed'])
+            ->name('verification.verify');
+        Route::post('/email/verify', [EmailVerificationController::class, 'resend'])
+            ->middleware(['auth', 'throttle:3,1'])
+            ->name('verification.send');
     });
