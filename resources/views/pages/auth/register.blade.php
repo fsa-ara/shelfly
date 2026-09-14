@@ -6,7 +6,7 @@
     <x-layout.auth>
         <x-heading level="1"
                    content="Sign Up" />
-        <p @class(['my-8 text-center'])>Sign up you {{ config('app.name') }} account to access all services.</p>
+        <p @class(['my-8 text-center'])>Sign up your {{ config('app.name') }} account to access all services.</p>
         <x-form id="sign-up-form"
                 action="{{ route('register') }}"
                 method="post">

@@ -5,7 +5,7 @@
     <x-layout.auth>
         <x-heading level="1"
                    content="Sign In" />
-        <p @class(['my-8 text-center'])>Sign in to you {{ config('app.name') }} account to access all services.</p>
+        <p @class(['my-8 text-center'])>Sign in to your {{ config('app.name') }} account to access all services.</p>
         <x-form id="sign-in-form"
                 action="{{ route('login') }}"
                 method="post">
@@ -40,7 +40,7 @@
         </x-form>
         <div @class(['my-8 text-center'])>
             <x-nav.link href=""
-                        text="Forgot you password?" />
+                        text="Forgot your password?" />
         </div>
         <div @class(['flex flex-wrap gap-x-2 justify-center px-4'])>
             <p>Don't have a {{ config('app.name') }} account?</p>
