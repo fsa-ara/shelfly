@@ -10,8 +10,17 @@ use Illuminate\View\View;
 
 class EmailVerificationController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View | RedirectResponse
     {
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->intended(route('home'))->with([
+                'status' => 'Your account has already been verified!',
+            ]);
+        }
+
         return view('pages.auth.email-verification');
     }
 
@@ -32,7 +41,7 @@ class EmailVerificationController extends Controller
         $user->sendEmailVerificationNotification();
 
         return back()->with([
-            'status' => 'The verification link has been sent!',
+            'status' => 'The verification link has been resent!',
         ]);
     }
 }
