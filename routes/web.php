@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Pages\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,4 +14,8 @@ Route::prefix('/account')
             ->middleware('guest')
             ->name('login');
         Route::post('/sign-in', [LoginController::class, 'authenticate']);
+        Route::get('/sign-up', [RegisterController::class, 'index'])
+            ->middleware('guest')
+            ->name('register');
+        Route::post('/sign-up', [RegisterController::class, 'create']);
     });
