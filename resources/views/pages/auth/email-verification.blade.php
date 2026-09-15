@@ -6,6 +6,9 @@
         <x-form id="email-verification-form"
                 action="{{ route('verification.send') }}"
                 method="post">
+            <div @class(['h-24'])>
+                <x-form.error type="email" />
+            </div>
             <x-form.button form="email-verification-form"
                            type="submit"
                            text="Resend" />
