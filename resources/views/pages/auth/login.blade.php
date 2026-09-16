@@ -39,7 +39,7 @@
                            text="Sign In" />
         </x-form>
         <div @class(['my-8 text-center'])>
-            <x-nav.link href=""
+            <x-nav.link href="{{ route('password.request') }}"
                         text="Forgot your password?" />
         </div>
         <div @class(['flex flex-wrap gap-x-2 justify-center px-4'])>
