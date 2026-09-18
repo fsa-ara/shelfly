@@ -1,8 +1,8 @@
-<x-app title="Email Verification">
+<x-app title="{{ __('pages/auth/email-verification.title') }}">
     <x-layout.auth>
         <x-heading level="1"
-                   content="Email Verification" />
-        <p @class(['my-8 text-center'])>Please click the link emailed to you to verify your {{ config('app.name') }} account.</p>
+                   content="{{ __('pages/auth/email-verification.heading') }}" />
+        <p @class(['my-8 text-center'])>{{ __('pages/auth/email-verification.description') }}</p>
         <x-form id="email-verification-form"
                 action="{{ route('verification.send') }}"
                 method="post">
@@ -11,7 +11,7 @@
             </div>
             <x-form.button form="email-verification-form"
                            type="submit"
-                           text="Resend" />
+                           text="{{ __('pages/auth/email-verification.form.button') }}" />
         </x-form>
     </x-layout.auth>
 </x-app>

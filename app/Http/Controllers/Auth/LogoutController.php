@@ -17,7 +17,7 @@ class LogoutController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login')->with([
-            'status' => 'You are logged out!',
+            'status' => __('pages/auth/logout.status.logged_out'),
         ]);
     }
 }

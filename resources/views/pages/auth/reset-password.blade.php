@@ -1,11 +1,11 @@
-<x-app title="Reset Password">
+<x-app title="{{ __('pages/auth/reset-password.title') }}">
     @php
         $hasError = $errors->has('email');
     @endphp
     <x-layout.auth>
         <x-heading level="1"
-                   content="Reset Password" />
-        <p @class(['my-8 text-center'])>Enter your new password.</p>
+                   content="{{ __('pages/auth/reset-password.title') }}" />
+        <p @class(['my-8 text-center'])>{{ __('pages/auth/reset-password.description') }}</p>
         <x-form id="reset-password-form"
                 action="{{ route('password.update') }}"
                 method="post">
@@ -22,13 +22,13 @@
                               name="password"
                               type="password"
                               required
-                              label="Password"
+                              label="{{ __('pages/auth/reset-password.form.input.password') }}"
                               :hasError="$hasError" />
                 <x-form.input id="reset-password-password-confirmation-field"
                               name="password_confirmation"
                               type="password"
                               required
-                              label="Password confirmation"
+                              label="{{ __('pages/auth/reset-password.form.input.password_confirmation') }}"
                               :hasError="$hasError" />
                 <div @class(['h-24'])>
                     <x-form.error type="email" />
@@ -36,7 +36,7 @@
             </div>
             <x-form.button form="reset-password-form"
                            type="submit"
-                           text="Continue" />
+                           text="{{ __('pages/auth/reset-password.form.button') }}" />
         </x-form>
     </x-layout.auth>
 </x-app>

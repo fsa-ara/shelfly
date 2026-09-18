@@ -40,7 +40,7 @@ class RegisterController extends Controller
         event(new Registered($user));
 
         return redirect()->route('verification.notice')->with([
-            'status' => 'Your account has been created!'
+            'status' => __('pages/auth/register.status.registered'),
         ]);
     }
 }

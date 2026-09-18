@@ -23,7 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (ThrottleRequestsException $e, Request $request) {
             if ($request->routeIs('verification.send')) {
                 return back()->withErrors([
-                    'email' => 'Too many requests to resend the verification email. Please wait before trying again.',
+                    'email' => __('pages/auth/email-verification.error.throttle'),
                 ]);
             }
         });

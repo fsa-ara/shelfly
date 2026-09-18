@@ -23,12 +23,12 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended(route('home'))->with([
-                'status' => 'You are logged in!',
+                'status' => __('pages/auth/login.status.logged_in'),
             ]);
         }
 
         return back()->withErrors([
-            'email' => 'Invalid email or password.',
+            'email' => __('pages/auth/login.error.credentials'),
         ])->onlyInput('email');
     }
 }

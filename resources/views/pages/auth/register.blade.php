@@ -1,12 +1,12 @@
-<x-app title="Sign Up">
+<x-app title="{{ __('pages/auth/register.title') }}">
     @php
         $hasEmailError = $errors->has('email');
         $hasPasswordError = $errors->has('password');
     @endphp
     <x-layout.auth>
         <x-heading level="1"
-                   content="Sign Up" />
-        <p @class(['my-8 text-center'])>Sign up your {{ config('app.name') }} account to access all services.</p>
+                   content="{{ __('pages/auth/register.heading') }}" />
+        <p @class(['my-8 text-center'])>{{ __('pages/auth/register.description') }}</p>
         <x-form id="sign-up-form"
                 action="{{ route('register') }}"
                 method="post">
@@ -17,19 +17,19 @@
                               value="{{ old('email') }}"
                               autocomplete="username"
                               required
-                              label="Email"
+                              label="{{ __('pages/auth/register.form.input.email') }}"
                               :hasError="$hasEmailError" />
                 <x-form.input id="sign-up-password-field"
                               name="password"
                               type="password"
                               required
-                              label="Password"
+                              label="{{ __('pages/auth/register.form.input.password') }}"
                               :hasError="$hasPasswordError" />
                 <x-form.input id="sign-up-password-confirmation-field"
                               name="password_confirmation"
                               type="password"
                               required
-                              label="Password confirmation"
+                              label="{{ __('pages/auth/register.form.input.password_confirmation') }}"
                               :hasError="$hasPasswordError" />
                 <div @class(['h-24'])>
                     <x-form.error type="email" />
@@ -38,12 +38,12 @@
             </div>
             <x-form.button form="sign-up-form"
                            type="submit"
-                           text="Sign Up" />
+                           text="{{ __('pages/auth/register.form.button') }}" />
         </x-form>
         <div @class(['flex flex-wrap gap-x-2 justify-center my-8 px-4'])>
-            <p>Do you already have a {{ config('app.name') }} account?</p>
+            <p>{{ __('pages/auth/register.login.description') }}</p>
             <x-nav.link href="{{ route('login') }}"
-                        text="Sign in" />
+                        text="{{ __('pages/auth/register.login.link') }}" />
         </div>
     </x-layout.auth>
 </x-app>

@@ -17,7 +17,7 @@ class EmailVerificationController extends Controller
 
         if ($user->hasVerifiedEmail()) {
             return redirect()->intended(route('home'))->with([
-                'status' => 'Your account has already been verified!',
+                'status' => __('pages/auth/email-verification.status.already_verified'),
             ]);
         }
 
@@ -29,7 +29,7 @@ class EmailVerificationController extends Controller
         $request->fulfill();
 
         return redirect()->intended(route('home'))->with([
-            'status' => 'Your account has been verified!',
+            'status' => __('pages/auth/email-verification.status.verified'),
         ]);
     }
 
@@ -41,7 +41,7 @@ class EmailVerificationController extends Controller
         $user->sendEmailVerificationNotification();
 
         return back()->with([
-            'status' => 'The verification link has been resent!',
+            'status' => __('pages/auth/email-verification.status.resent'),
         ]);
     }
 }

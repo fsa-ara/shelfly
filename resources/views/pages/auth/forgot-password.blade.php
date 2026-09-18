@@ -1,11 +1,11 @@
-<x-app title="Forgot Password">
+<x-app title="{{ __('pages/auth/forgot-password.title') }}">
     @php
         $hasError = $errors->has('email');
     @endphp
     <x-layout.auth>
         <x-heading level="1"
-                   content="Forgot Password" />
-        <p @class(['my-8 text-center'])>Enter the email address associated with you account so we can send you instructions on how to reset you password.</p>
+                   content="{{ __('pages/auth/forgot-password.heading') }}" />
+        <p @class(['my-8 text-center'])>{{ __('pages/auth/forgot-password.description') }}</p>
         <x-form id="forgot-password-form"
                 action="{{ route('password.request') }}"
                 method="post">
@@ -16,7 +16,7 @@
                               value="{{ old('email') }}"
                               autocomplete="username"
                               required
-                              label="Email"
+                              label="{{ __('pages/auth/forgot-password.form.input.email') }}"
                               :hasError="$hasError" />
                 <div @class(['h-24'])>
                     <x-form.error type="email" />
@@ -24,7 +24,7 @@
             </div>
             <x-form.button form="forgot-password-form"
                            type="submit"
-                           text="Continue" />
+                           text="{{ __('pages/auth/forgot-password.form.button') }}" />
         </x-form>
     </x-layout.auth>
 </x-app>
