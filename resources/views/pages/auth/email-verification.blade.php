@@ -1,5 +1,5 @@
 <x-app title="{{ __('pages/auth/email-verification.title') }}">
-    <x-layout.auth>
+    <x-layout.account>
         <x-heading level="1"
                    content="{{ __('pages/auth/email-verification.heading') }}" />
         <p @class(['my-8 text-center'])>{{ __('pages/auth/email-verification.description') }}</p>
@@ -13,5 +13,5 @@
                            type="submit"
                            text="{{ __('pages/auth/email-verification.form.button') }}" />
         </x-form>
-    </x-layout.auth>
+    </x-layout.account>
 </x-app>

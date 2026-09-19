@@ -2,7 +2,7 @@
     @php
         $hasError = $errors->has('email');
     @endphp
-    <x-layout.auth>
+    <x-layout.account>
         <x-heading level="1"
                    content="{{ __('pages/auth/forgot-password.heading') }}" />
         <p @class(['my-8 text-center'])>{{ __('pages/auth/forgot-password.description') }}</p>
@@ -26,5 +26,5 @@
                            type="submit"
                            text="{{ __('pages/auth/forgot-password.form.button') }}" />
         </x-form>
-    </x-layout.auth>
+    </x-layout.account>
 </x-app>

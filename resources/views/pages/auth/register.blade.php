@@ -3,7 +3,7 @@
         $hasEmailError = $errors->has('email');
         $hasPasswordError = $errors->has('password');
     @endphp
-    <x-layout.auth>
+    <x-layout.account>
         <x-heading level="1"
                    content="{{ __('pages/auth/register.heading') }}" />
         <p @class(['my-8 text-center'])>{{ __('pages/auth/register.description') }}</p>
@@ -15,7 +15,7 @@
                               name="email"
                               type="email"
                               value="{{ old('email') }}"
-                              autocomplete="username"
+                              autocomplete="email"
                               required
                               label="{{ __('pages/auth/register.form.input.email') }}"
                               :hasError="$hasEmailError" />
@@ -45,5 +45,5 @@
             <x-nav.link href="{{ route('login') }}"
                         text="{{ __('pages/auth/register.login.link') }}" />
         </div>
-    </x-layout.auth>
+    </x-layout.account>
 </x-app>

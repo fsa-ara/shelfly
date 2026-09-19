@@ -2,7 +2,7 @@
     @php
         $hasError = $errors->has('email');
     @endphp
-    <x-layout.auth>
+    <x-layout.account>
         <x-heading level="1"
                    content="{{ __('pages/auth/login.heading') }}" />
         <p @class(['my-8 text-center'])>{{ __('pages/auth/login.description') }}</p>
@@ -47,5 +47,5 @@
             <x-nav.link href="{{ route('register') }}"
                         text="{{ __('pages/auth/login.register.link') }}" />
         </div>
-    </x-layout.auth>
+    </x-layout.account>
 </x-app>
