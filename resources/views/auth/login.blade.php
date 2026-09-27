@@ -43,6 +43,6 @@
     </div>
     <div>
         <p>{{ "Don't have a " . config('app.name') . ' account?' }}</p>
-        <a href="">Sign up</a>
+        <a href="{{ route('register') }}">Sign up</a>
     </div>
 </x-app>

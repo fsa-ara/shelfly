@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,9 @@ Route::prefix('auth')
                     ->name('login');
                 Route::post('/sign-in', [LoginController::class, 'authenticate'])
                     ->name('login.authenticate');
+                Route::get('/sign-up', [RegisterController::class, 'index'])
+                    ->name('register');
+                Route::post('/sign-up', [RegisterController::class, 'store'])
+                    ->name('register.store');
             });
     });
