@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +21,11 @@ Route::prefix('auth')
                     ->name('register');
                 Route::post('/sign-up', [RegisterController::class, 'store'])
                     ->name('register.store');
+            });
+
+        Route::middleware('auth')
+            ->group(function () {
+                Route::post('/sign-out', [LogoutController::class, 'deauthenticate'])
+                    ->name('logout.deauthenticate');
             });
     });
