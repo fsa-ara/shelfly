@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -27,5 +28,17 @@ Route::prefix('auth')
             ->group(function () {
                 Route::post('/sign-out', [LogoutController::class, 'deauthenticate'])
                     ->name('logout.deauthenticate');
+
+                Route::middleware('unverified')
+                    ->group(function () {
+                        Route::get('/email/verify', [EmailVerificationController::class, 'index'])
+                            ->name('verification.notice');
+                        Route::post('/email/verify', [EmailVerificationController::class, 'send'])
+                            ->middleware('throttle:3,1')
+                            ->name('verification.send');
+                        Route::get('/email/verify/{uuid}/{hash}', [EmailVerificationController::class, 'verify'])
+                            ->middleware('signed')
+                            ->name('verification.verify');
+                    });
             });
     });
