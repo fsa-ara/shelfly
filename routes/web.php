@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +24,15 @@ Route::prefix('auth')
                     ->name('register');
                 Route::post('/sign-up', [RegisterController::class, 'store'])
                     ->name('register.store');
+
+                Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])
+                    ->name('password.request');
+                Route::post('/forgot-password', [ForgotPasswordController::class, 'send'])
+                    ->name('password.email');
+                Route::get('/reset-password/{token}', [ResetPasswordController::class, 'index'])
+                    ->name('password.reset');
+                Route::post('/reset-password', [ResetPasswordController::class, 'update'])
+                    ->name('password.update');
             });
 
         Route::middleware('auth')
