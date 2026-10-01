@@ -39,7 +39,7 @@
                 type="submit">Sign in</button>
     </form>
     <div>
-        <a href="">Forgot your password?</a>
+        <a href="{{ route('password.request') }}">Forgot your password?</a>
     </div>
     <div>
         <p>{{ "Don't have a " . config('app.name') . ' account?' }}</p>
