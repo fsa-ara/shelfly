@@ -11,7 +11,7 @@ class RegisterTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_and_user_profile_are_created_after_register(): void
+    public function test_user_and_profile_are_created_after_register(): void
     {
         $response = $this->post(route('register.store'), [
             'email' => 'john.doe@icloud.com',
@@ -23,7 +23,7 @@ class RegisterTest extends TestCase
             ->where('email', 'john.doe@icloud.com')
             ->firstOrFail();
 
-        $this->assertDatabaseHas('user_profiles', [
+        $this->assertDatabaseHas('profiles', [
             'user_id' => $user->id,
         ]);
 

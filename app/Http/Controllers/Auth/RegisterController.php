@@ -31,7 +31,7 @@ class RegisterController extends Controller
                 'password' => $credentials['password'],
             ]);
 
-            $user->userProfile()->create([
+            $user->profile()->create([
                 'username' => $this->makeUserName(),
                 'locale' => $request->getPreferredLanguage(),
             ]);
