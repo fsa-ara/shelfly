@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Account\Profile;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -32,8 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function userProfile(): HasOne
+    public function profile(): HasOne
     {
-        return $this->hasOne(UserProfile::class);
+        return $this->hasOne(Profile::class);
     }
 }
