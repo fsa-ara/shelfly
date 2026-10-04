@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Account;
 
-use App\Models\UserProfile;
+use App\Models\Account\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<UserProfile>
+ * @extends Factory<Profile>
  */
-class UserProfileFactory extends Factory
+class ProfileFactory extends Factory
 {
     /**
      * Define the model's default state.

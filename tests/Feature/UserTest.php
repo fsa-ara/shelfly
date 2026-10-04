@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Account\Profile;
 use App\Models\User;
-use App\Models\UserProfile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -15,14 +15,14 @@ class UserTest extends TestCase
     public function test_deleting_a_user_also_deletes_their_profile(): void
     {
         $user = User::factory()
-            ->has(UserProfile::factory())
+            ->has(Profile::factory())
             ->create();
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
         ]);
 
-        $this->assertDatabaseHas('user_profiles', [
+        $this->assertDatabaseHas('profiles', [
             'user_id' => $user->id,
         ]);
 
@@ -32,7 +32,7 @@ class UserTest extends TestCase
             'id' => $user->id,
         ]);
 
-        $this->assertDatabaseMissing('user_profiles', [
+        $this->assertDatabaseMissing('profiles', [
             'user_id' => $user->id,
         ]);
     }
