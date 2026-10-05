@@ -18,7 +18,6 @@ class EnsureUserIsUnverified
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
         /** @var User $user */
-
         $user = $request->user();
 
         if ($user->hasVerifiedEmail()) {
