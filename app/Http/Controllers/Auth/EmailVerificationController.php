@@ -19,7 +19,6 @@ class EmailVerificationController extends Controller
     public function send(Request $request): RedirectResponse
     {
         /** @var User $user */
-
         $user = $request->user();
 
         $user->sendEmailVerificationNotification();
