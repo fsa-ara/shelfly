@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -51,5 +52,20 @@ Route::prefix('auth')
                             ->middleware('signed')
                             ->name('verification.verify');
                     });
+            });
+    });
+
+Route::middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::prefix('account')
+            ->group(function () {
+                Route::get('/profile', [ProfileController::class, 'index'])
+                    ->name('profile');
+                Route::post('/profile/informations', [ProfileController::class, 'updateInformations'])
+                    ->name('profile.update.informations');
+                Route::post('/profile/security', [ProfileController::class, 'updateSecurity'])
+                    ->name('profile.update.security');
+                Route::post('/profile/delete', [ProfileController::class, 'delete'])
+                    ->name('profile.delete');
             });
     });
