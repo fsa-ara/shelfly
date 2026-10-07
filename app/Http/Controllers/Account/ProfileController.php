@@ -80,8 +80,8 @@ class ProfileController extends Controller
     private function getAvailableLanguages(): array
     {
         return [
-            'en' => 'English',
-            'fr' => 'French',
+            'en_US' => 'English',
+            'fr_FR' => 'French',
         ];
     }
 
@@ -95,6 +95,6 @@ class ProfileController extends Controller
 
         return in_array($profile->locale, array_keys($this->getAvailableLanguages()))
             ? $profile->locale
-            : config('app.locale');
+            : 'en_US';
     }
 }
