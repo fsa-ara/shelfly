@@ -33,8 +33,8 @@ class ProfileInformationsRequest extends FormRequest
             'locale' => [
                 'required',
                 Rule::in([
-                    'en',
-                    'fr',
+                    'en_US',
+                    'fr_FR',
                 ]),
             ],
         ];
