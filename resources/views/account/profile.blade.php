@@ -31,9 +31,9 @@
                                 name="locale"
                                 aria-required="true"
                                 required>
-                            @foreach ($availableLanguages as $code => $name)
+                            @foreach ($availableLocales as $code => $name)
                                 <option value="{{ $code }}"
-                                        @selected($code === $userLanguage)>{{ $name }}</option>
+                                        @selected($code === $userLocale)>{{ $name }}</option>
                             @endforeach
                         </select>
                     </div>
