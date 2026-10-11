@@ -11,7 +11,7 @@
         @session('status')
             <p>{{ $value }}</p>
         @endsession
-        <main @class(['overflow-y-scroll size-full'])>{{ $slot }}</main>
+        <x-layout.main>{{ $slot }}</x-layout.main>
     </body>
 
 </html>
