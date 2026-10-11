@@ -1,51 +1,52 @@
 <x-app title="Reset password">
-    <h1>Reset password</h1>
-    <p>Enter your new password below to complete the password reset.</p>
-    <form id="reset-password-form"
-          action="{{ route('password.update') }}"
-          method="post">
-        <input name="token"
-               type="hidden"
-               value="{{ request('token') }}"
-               aria-required="true"
-               required>
-        <input name="email"
-               type="hidden"
-               value="{{ request('email') }}"
-               aria-required="true"
-               required>
-        <div>
-            <div>
-                <label for="reset-password-password-field">Enter your new password</label>
-                <input id="reset-password-password-field"
-                       name="password"
-                       type="password"
-                       aria-required="true"
-                       required>
-            </div>
-            <div>
-                <label for="reset-password-password-confirmation-field">Confirm your new password</label>
-                <input id="reset-password-password-confirmation-field"
-                       name="password_confirmation"
-                       type="password"
-                       aria-required="true"
-                       required>
-            </div>
-            <div>
-                @error('email')
-                    <p>{{ $message }}</p>
-                @enderror
-                @error('password')
-                    <p>{{ $message }}</p>
-                @enderror
-            </div>
+    <x-card.auth>
+        <div @class(['mb-2'])>
+            <x-typography.heading level="1"
+                                  content="{{ 'Reset password' }}" />
         </div>
-        <button form="reset-password-form"
-                type="submit">Update</button>
-    </form>
-    <div>
-        @error('email')
-            <a href="{{ route('password.request') }}">Request a new password reset link</a>
-        @enderror
-    </div>
+        <div @class(['mb-16 text-center'])>
+            <p>Enter your new password below to complete the password reset.</p>
+        </div>
+        <div @class(['mb-8'])>
+            <x-form id="reset-password-form"
+                    action="{{ route('password.update') }}"
+                    method="post">
+                <x-form.input name="token"
+                              type="hidden"
+                              value="{{ request('token') }}"
+                              required />
+                <x-form.input name="email"
+                              type="hidden"
+                              value="{{ request('email') }}"
+                              required />
+                <div @class(['flex flex-col gap-4 mb-4'])>
+                    <x-form.input id="reset-password-password-field"
+                                  name="password"
+                                  type="password"
+                                  required
+                                  label="{{ 'Enter your new password' }}"
+                                  :isInvalid="$errors->has('password')" />
+                    <x-form.input id="reset-password-password-confirmation-field"
+                                  name="password_confirmation"
+                                  type="password"
+                                  required
+                                  label="{{ 'Confirm your new password' }}"
+                                  :isInvalid="$errors->has('password')" />
+                    <div @class(['h-8'])>
+                        <x-form.error type="email" />
+                        <x-form.error type="password" />
+                    </div>
+                </div>
+            </x-form>
+        </div>
+        <div>
+            <x-form.button form="reset-password-form"
+                           type="submit"
+                           text="{{ 'Update' }}" />
+        </div>
+        <div @class(['mt-8 text-center'])>
+            <x-nav.link href="{{ route('password.request') }}"
+                        text="{{ 'Request a new password reset link' }}" />
+        </div>
+    </x-card.auth>
 </x-app>
