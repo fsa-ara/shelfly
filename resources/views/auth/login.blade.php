@@ -48,7 +48,7 @@
                         text="{{ 'Forgot your password?' }}" />
         </div>
         <div @class(['flex flex-col gap-2 items-center'])>
-            <p>{{ "Don't have a " . config('app.name') . ' account?' }}</p>
+            <p>Don't have a {{ config('app.name') }} account?</p>
             <x-nav.link href="{{ route('register') }}"
                         text="{{ 'Sign up' }}" />
         </div>
