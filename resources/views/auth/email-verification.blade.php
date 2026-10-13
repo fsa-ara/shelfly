@@ -17,9 +17,9 @@
             </x-form>
         </div>
         <div>
-            <x-form.button form="email-verification-form"
-                           type="submit"
-                           text="{{ 'Send' }}" />
+            <x-button.primary form="email-verification-form"
+                              type="submit"
+                              text="{{ 'Send' }}" />
         </div>
     </x-card.auth>
 </x-app>

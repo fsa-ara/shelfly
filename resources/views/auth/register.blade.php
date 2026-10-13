@@ -40,9 +40,9 @@
             </x-form>
         </div>
         <div>
-            <x-form.button form="sign-up-form"
-                           type="submit"
-                           text="{{ 'Sign up' }}" />
+            <x-button.primary form="sign-up-form"
+                              type="submit"
+                              text="{{ 'Sign up' }}" />
         </div>
         <div @class(['flex flex-col gap-2 items-center mt-8'])>
             <p>Do you already have a {{ config('app.name') }} account?</p>
