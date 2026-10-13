@@ -39,9 +39,9 @@
             </x-form>
         </div>
         <div>
-            <x-form.button form="sign-in-form"
-                           type="submit"
-                           text="{{ 'Sign in' }}" />
+            <x-button.primary form="sign-in-form"
+                              type="submit"
+                              text="{{ 'Sign in' }}" />
         </div>
         <div @class(['my-8 text-center'])>
             <x-nav.link href="{{ route('password.request') }}"

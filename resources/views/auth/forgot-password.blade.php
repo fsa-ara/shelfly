@@ -27,9 +27,9 @@
             </x-form>
         </div>
         <div>
-            <x-form.button form="forgot-password-form"
-                           type="submit"
-                           text="{{ 'Send' }}" />
+            <x-button.primary form="forgot-password-form"
+                              type="submit"
+                              text="{{ 'Send' }}" />
         </div>
         <div @class(['mt-8 text-center'])>
             <x-nav.link href="{{ route('login') }}"

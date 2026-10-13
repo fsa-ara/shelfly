@@ -40,9 +40,9 @@
             </x-form>
         </div>
         <div>
-            <x-form.button form="reset-password-form"
-                           type="submit"
-                           text="{{ 'Update' }}" />
+            <x-button.primary form="reset-password-form"
+                              type="submit"
+                              text="{{ 'Update' }}" />
         </div>
         <div @class(['mt-8 text-center'])>
             <x-nav.link href="{{ route('password.request') }}"
