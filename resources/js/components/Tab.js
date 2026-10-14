@@ -12,10 +12,27 @@ export class Tab {
                 ":scope > [role=tabpanel]",
             );
 
+            this.#init();
             this.#onClick();
             this.#onKeyboard();
         }
     }
+
+    #init = () => {
+        const tabPathname = sessionStorage.getItem("tab_pathname");
+        const tabId = sessionStorage.getItem("tab_id");
+        const tabButton = [...this.#tabs].find(
+            (tab) => tab.getAttribute("aria-controls") === tabId,
+        );
+
+        if (tabPathname === window.location.pathname && tabButton) {
+            this.#switchTab(tabButton);
+
+            return;
+        }
+
+        this.#removeStorage();
+    };
 
     #onClick = () => {
         this.#tabs.forEach((tab) => {
@@ -24,12 +41,10 @@ export class Tab {
     };
 
     #onKeyboard = () => {
-        let tabFocus = 0;
+        let tabFocus = [...this.#tabs].findIndex((tab) => tab.tabIndex === 0);
 
         this.#tabList.addEventListener("keydown", (e) => {
             if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-                this.#tabs[tabFocus].tabIndex = -1;
-
                 if (e.key === "ArrowLeft") {
                     tabFocus--;
 
@@ -44,17 +59,19 @@ export class Tab {
                     }
                 }
 
-                this.#tabs[tabFocus].tabIndex = 0;
                 this.#tabs[tabFocus].focus();
+
+                this.#switchTab(this.#tabs[tabFocus]);
             }
         });
     };
 
     #switchTab = (e) => {
-        const tabButton = e.target;
+        const tabButton = e.currentTarget ?? e;
 
         this.#tabs.forEach((tab) => {
             tab.ariaSelected = "false";
+            tab.tabIndex = -1;
         });
 
         this.#tabPanels.forEach((tabPanel) => {
@@ -62,6 +79,22 @@ export class Tab {
         });
 
         tabButton.ariaSelected = "true";
+        tabButton.tabIndex = 0;
         tabButton.ariaControlsElements[0].hidden = false;
+
+        this.#setStorage(tabButton);
+    };
+
+    #setStorage = (tabButton) => {
+        const tabPathname = window.location.pathname;
+        const tabId = tabButton.ariaControlsElements[0].id;
+
+        sessionStorage.setItem("tab_pathname", tabPathname);
+        sessionStorage.setItem("tab_id", tabId);
+    };
+
+    #removeStorage = () => {
+        sessionStorage.removeItem("tab_pathname");
+        sessionStorage.removeItem("tab_id");
     };
 }
