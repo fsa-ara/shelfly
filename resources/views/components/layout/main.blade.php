@@ -1,4 +1,3 @@
 <main @class(['overflow-y-scroll size-full'])>
-    <div id="main-container"
-         @class(['h-auto px-4 w-full', 'sm:my-16'])>{{ $slot }}</div>
+    <div @class(['h-auto px-4 w-full', 'sm:my-16'])>{{ $slot }}</div>
 </main>
