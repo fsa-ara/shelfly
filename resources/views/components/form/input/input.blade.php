@@ -1,6 +1,8 @@
 @switch($type)
     @case('email')
     @case('password')
+
+    @case('text')
         <x-form.input.field {{ $attributes }} />
     @break
 
