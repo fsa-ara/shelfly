@@ -7,7 +7,7 @@
         <div @class(['mb-16 text-center'])>
             <p>Manage your personal information and account security.</p>
         </div>
-        <div id="profile-tabs">
+        <div>
             <x-tab.list aria-label="{{ 'Profile tabs' }}">
                 <x-button.tab id="profile-informations-tab"
                               role="tab"
