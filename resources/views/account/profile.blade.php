@@ -77,7 +77,7 @@
                     <div @class(['flex justify-center relative'])>
                         <div @class([
                             'bg-white dark:bg-black',
-                            'shadow-slate-300 dark:shadow-slate-700',
+                            'shadow-slate-400 dark:shadow-slate-600',
                             'text-amber-500',
                             'absolute aspect-square h-16 p-4 rounded-full shadow-lg -translate-y-full',
                         ])>
