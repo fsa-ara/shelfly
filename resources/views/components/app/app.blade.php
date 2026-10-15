@@ -8,9 +8,7 @@
         'text-slate-700 dark:text-slate-300',
         'font-[Montserrat,_sans-serif] h-dvh overflow-hidden',
     ])>
-        @session('status')
-            <p>{{ $value }}</p>
-        @endsession
+        <x-toast />
         <x-layout.main>{{ $slot }}</x-layout.main>
     </body>
 
