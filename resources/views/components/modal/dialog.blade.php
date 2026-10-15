@@ -2,7 +2,8 @@
         @class([
             'bg-white dark:bg-black',
             'text-current',
-            'm-auto outline-none overflow-visible p-8 rounded-2xl w-full',
+            'shadow-slate-400 dark:shadow-slate-600',
+            'm-auto outline-none overflow-visible p-8 rounded-2xl shadow-lg w-full',
             'opacity-0 scale-75',
             'open:opacity-100 open:scale-100',
             'starting:open:opacity-0 starting:open:scale-75',
