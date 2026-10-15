@@ -3,5 +3,6 @@
      viewBox="0 -960 960 960"
      width="24px"
      @class(['fill-current pointer-events-none size-full'])>
-    <x-dynamic-component :component="$component" />
+    <x-dynamic-component :component="$component"
+                         {{ $attributes }} />
 </svg>
