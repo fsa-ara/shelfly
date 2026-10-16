@@ -5,7 +5,7 @@
                                   content="{{ __('auth/forgot-password.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>{{ __('auth/forgot-password.description.subtitle') }}</p>
+            <p>{{ __('auth/forgot-password.description.subheading') }}</p>
         </div>
         <div @class(['mb-8'])>
             <x-form id="forgot-password-form"

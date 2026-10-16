@@ -14,7 +14,7 @@ return [
     'title' => 'Sign up',
     'heading' => 'Sign up',
     'description' => [
-        'subtitle' => 'Sign up your :app account to access all services.',
+        'subheading' => 'Sign up your :app account to access all services.',
         'sign_in' => 'Do you already have a :app account?',
     ],
     'input' => [

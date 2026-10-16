@@ -14,7 +14,7 @@ return [
     'title' => 'Email verification',
     'heading' => 'Email verification',
     'description' => [
-        'subtitle' => 'A verification email has been sent to your inbox. Please click the link to verify your :app account.',
+        'subheading' => 'A verification email has been sent to your inbox. Please click the link to verify your :app account.',
     ],
     'button' => [
         'submit' => 'Send',
