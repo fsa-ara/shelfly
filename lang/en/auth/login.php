@@ -32,7 +32,7 @@ return [
         'sign_up' => 'Sign up',
     ],
     'status' => [
-        'success' => 'You are logged in!'
+        'success' => 'You are logged in!',
     ],
     'error' => [
         'email' => 'Invalid email or password.',
