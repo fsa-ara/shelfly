@@ -14,7 +14,7 @@ class EmailVerificationException extends Exception
     {
         if ($request->routeIs('verification.send')) {
             return back()->withErrors([
-                'email' => 'Too many attempts to resend the verification email. Please wait before trying again.',
+                'email' => __('auth/email-verification.error.throttle'),
             ]);
         }
 
@@ -25,7 +25,7 @@ class EmailVerificationException extends Exception
     {
         if ($request->routeIs('verification.verify')) {
             return redirect()->route('verification.notice')->withErrors([
-                'email' => 'The verification link is no longer valid. Please request a new verification email.',
+                'email' => __('auth/email-verification.error.invalid_signature'),
             ]);
         }
 

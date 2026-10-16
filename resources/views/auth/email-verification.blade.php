@@ -1,11 +1,11 @@
-<x-app title="Email verification">
+<x-app title="{{ __('auth/email-verification.title') }}">
     <x-card.auth>
         <div @class(['mb-2'])>
             <x-typography.heading level="1"
-                                  content="{{ 'Email verification' }}" />
+                                  content="{{ __('auth/email-verification.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>A verification email has been sent to your inbox. Please click the link to verify your {{ config('app.name') }} account.</p>
+            <p>{{ __('auth/email-verification.description.subtitle', ['app' => config('app.name')]) }}</p>
         </div>
         <div @class(['mb-8'])>
             <x-form id="email-verification-form"
@@ -19,7 +19,7 @@
         <div>
             <x-button.primary form="email-verification-form"
                               type="submit"
-                              text="{{ 'Send' }}" />
+                              text="{{ __('auth/email-verification.button.submit') }}" />
         </div>
     </x-card.auth>
 </x-app>

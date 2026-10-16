@@ -24,7 +24,7 @@ class EmailVerificationController extends Controller
         $user->sendEmailVerificationNotification();
 
         return back()->with([
-            'status' => 'The verification link has been sent!',
+            'status' => __('auth/email-verification.status.success.sent'),
         ]);
     }
 
@@ -33,7 +33,7 @@ class EmailVerificationController extends Controller
         $request->fulfill();
 
         return redirect('/')->with([
-            'status' => 'Your account has been verified!',
+            'status' => __('auth/email-verification.status.success.verified'),
         ]);
     }
 }
