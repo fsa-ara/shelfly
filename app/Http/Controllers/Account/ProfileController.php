@@ -14,14 +14,9 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function index(Request $request): View
+    public function index(): View
     {
-        $data = [
-            'availableLocales' => $this->getAvailableLocales(),
-            'userLocale' => $this->getUserLocale($request),
-        ];
-
-        return view('account.profile', $data);
+        return view('account.profile');
     }
 
     public function updateInformations(ProfileInformationsRequest $request): RedirectResponse
@@ -75,26 +70,5 @@ class ProfileController extends Controller
         $user->deleteOrFail();
 
         return redirect()->route('home');
-    }
-
-    private function getAvailableLocales(): array
-    {
-        return [
-            'en_US' => 'English',
-            'fr_FR' => 'French',
-        ];
-    }
-
-    private function getUserLocale(Request $request): string
-    {
-        /** @var User $user */
-        $user = $request->user();
-
-        /** @var Profile $profile */
-        $profile = $user->profile;
-
-        return in_array($profile->locale, array_keys($this->getAvailableLocales()))
-            ? $profile->locale
-            : 'en_US';
     }
 }
