@@ -1,11 +1,11 @@
-<x-app title="Forgot password">
+<x-app title="{{ __('auth/forgot-password.title') }}">
     <x-card.auth>
         <div @class(['mb-2'])>
             <x-typography.heading level="1"
-                                  content="{{ 'Forgot password' }}" />
+                                  content="{{ __('auth/forgot-password.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>Enter your email address to receive password reset instructions.</p>
+            <p>{{ __('auth/forgot-password.description.subtitle') }}</p>
         </div>
         <div @class(['mb-8'])>
             <x-form id="forgot-password-form"
@@ -18,7 +18,7 @@
                                   value="{{ old('email') }}"
                                   autocomplete="username"
                                   required
-                                  label="{{ 'Enter your email' }}"
+                                  label="{{ __('auth/forgot-password.input.label.email') }}"
                                   :isInvalid="$errors->has('email')" />
                     <div @class(['h-8'])>
                         <x-form.error type="email" />
@@ -29,11 +29,11 @@
         <div>
             <x-button.primary form="forgot-password-form"
                               type="submit"
-                              text="{{ 'Send' }}" />
+                              text="{{ __('auth/forgot-password.button.submit') }}" />
         </div>
         <div @class(['mt-8 text-center'])>
             <x-nav.link href="{{ route('login') }}"
-                        text="{{ 'Back to sign in' }}" />
+                        text="{{ __('auth/forgot-password.link.sign_in') }}" />
         </div>
     </x-card.auth>
 </x-app>
