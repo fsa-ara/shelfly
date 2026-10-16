@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\Account\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -94,12 +95,13 @@ class LoginTest extends TestCase
     public function test_authenticated_user_cannot_access_login_page(): void
     {
         $user = User::factory()
+            ->has(Profile::factory())
             ->create([
                 'email' => 'john.doe@icloud.com',
                 'password' => 'buhriz-geZku4-tyvjud',
             ]);
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         $response = $this->get(route('login'));
 
