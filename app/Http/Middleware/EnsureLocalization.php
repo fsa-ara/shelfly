@@ -27,12 +27,12 @@ class EnsureLocalization
 
             $locale = $profile->locale;
         } else {
-            $locale = $request->getLanguages()[0];
+            $locale = $request->getPreferredLanguage();
         }
 
         $locale = str_replace('-', '_', $locale);
 
-        if (in_array($locale, config('app.supported_locales'))) {
+        if (array_key_exists($locale, config('app.supported_locales'))) {
             App::setLocale(strtok($locale, '-_'));
         }
 
