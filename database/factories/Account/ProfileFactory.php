@@ -19,7 +19,7 @@ class ProfileFactory extends Factory
     {
         return [
             'username' => fake()->userName(),
-            'locale' => fake()->locale(),
+            'locale' => 'en_US',
         ];
     }
 }
