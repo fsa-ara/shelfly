@@ -5,7 +5,7 @@
                                   content="{{ __('auth/register.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>{{ __('auth/register.description.subtitle', ['app' => config('app.name')]) }}</p>
+            <p>{{ __('auth/register.description.subheading', ['app' => config('app.name')]) }}</p>
         </div>
         <div @class(['mb-8'])>
             <x-form id="sign-up-form"

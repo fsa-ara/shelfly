@@ -5,7 +5,7 @@
                                   content="{{ __('auth/email-verification.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>{{ __('auth/email-verification.description.subtitle', ['app' => config('app.name')]) }}</p>
+            <p>{{ __('auth/email-verification.description.subheading', ['app' => config('app.name')]) }}</p>
         </div>
         <div @class(['mb-8'])>
             <x-form id="email-verification-form"

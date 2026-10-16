@@ -14,7 +14,7 @@ return [
     'title' => 'Forgot password',
     'heading' => 'Forgot password',
     'description' => [
-        'subtitle' => 'Enter your email address to receive password reset instructions.',
+        'subheading' => 'Enter your email address to receive password reset instructions.',
     ],
     'input' => [
         'label' => [
