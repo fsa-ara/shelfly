@@ -63,8 +63,8 @@ Route::middleware('localization')
                     ->group(function () {
                         Route::get('/profile', [ProfileController::class, 'index'])
                             ->name('profile');
-                        Route::post('/profile/informations', [ProfileController::class, 'updateInformations'])
-                            ->name('profile.update.informations');
+                        Route::post('/profile/information', [ProfileController::class, 'updateInformation'])
+                            ->name('profile.update.information');
                         Route::post('/profile/security', [ProfileController::class, 'updateSecurity'])
                             ->name('profile.update.security');
                         Route::post('/profile/delete', [ProfileController::class, 'delete'])

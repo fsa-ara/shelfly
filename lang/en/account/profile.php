@@ -14,18 +14,18 @@ return [
     'title' => 'Profile',
     'heading' => 'Profile',
     'description' => [
-        'subheading' => 'Manage your personal informations and account security.',
+        'subheading' => 'Manage your personal information and account security.',
     ],
     'tab' => [
         'label' => 'Profile tabs',
         'button' => [
-            'informations' => 'Informations',
+            'information' => 'Information',
             'security' => 'Security',
         ],
     ],
     'button' => [
         'submit' => [
-            'informations' => 'Update',
+            'information' => 'Update',
             'security' => 'Update',
             'delete' => 'Yes, delete',
         ],
@@ -54,7 +54,7 @@ return [
     ],
     'status' => [
         'success' => [
-            'informations_updated' => 'Your informations has been updated!',
+            'information_updated' => 'Your information has been updated!',
             'password_updated' => 'Your password has been updated!',
             'account_deleted' => 'Your account has been deleted!',
         ],
