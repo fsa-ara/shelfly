@@ -1,11 +1,11 @@
-<x-app title="Reset password">
+<x-app title="{{ __('auth/reset-password.title') }}">
     <x-card.auth>
         <div @class(['mb-2'])>
             <x-typography.heading level="1"
-                                  content="{{ 'Reset password' }}" />
+                                  content="{{ __('auth/reset-password.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>Enter your new password below to complete the password reset.</p>
+            <p>{{ __('auth/reset-password.description.subheading') }}</p>
         </div>
         <div @class(['mb-8'])>
             <x-form id="reset-password-form"
@@ -24,13 +24,13 @@
                                   name="password"
                                   type="password"
                                   required
-                                  label="{{ 'Enter your new password' }}"
+                                  label="{{ __('auth/reset-password.input.label.password') }}"
                                   :isInvalid="$errors->has('password')" />
                     <x-form.input id="reset-password-password-confirmation-field"
                                   name="password_confirmation"
                                   type="password"
                                   required
-                                  label="{{ 'Confirm your new password' }}"
+                                  label="{{ __('auth/reset-password.input.label.password_confirmation') }}"
                                   :isInvalid="$errors->has('password')" />
                     <div @class(['h-8'])>
                         <x-form.error type="email" />
@@ -42,11 +42,11 @@
         <div>
             <x-button.primary form="reset-password-form"
                               type="submit"
-                              text="{{ 'Update' }}" />
+                              text="{{ __('auth/reset-password.button.submit') }}" />
         </div>
         <div @class(['mt-8 text-center'])>
             <x-nav.link href="{{ route('password.request') }}"
-                        text="{{ 'Request a new password reset link' }}" />
+                        text="{{ __('auth/reset-password.link.request_reset_link') }}" />
         </div>
     </x-card.auth>
 </x-app>
