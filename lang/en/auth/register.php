@@ -31,7 +31,7 @@ return [
         'sign_in' => 'Sign in',
     ],
     'status' => [
-        'success' => 'Your account has been created!'
+        'success' => 'Your account has been created!',
     ],
 
 ];
