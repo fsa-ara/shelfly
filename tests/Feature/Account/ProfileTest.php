@@ -13,7 +13,7 @@ class ProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_can_modify_their_informations_with_valid_credentials(): void
+    public function test_user_can_modify_their_information_with_valid_credentials(): void
     {
         $user = User::factory()
             ->has(Profile::factory())
@@ -24,7 +24,7 @@ class ProfileTest extends TestCase
         $username = 'Joe';
         $locale = 'en_US';
 
-        $response = $this->post(route('profile.update.informations'), [
+        $response = $this->post(route('profile.update.information'), [
             'username' => $username,
             'locale' => $locale,
         ]);
@@ -38,7 +38,7 @@ class ProfileTest extends TestCase
         $response->assertRedirect();
     }
 
-    public function test_user_cannot_modify_their_informations_with_invalid_credentials(): void
+    public function test_user_cannot_modify_their_information_with_invalid_credentials(): void
     {
         $user = User::factory()
             ->has(Profile::factory())
@@ -49,13 +49,13 @@ class ProfileTest extends TestCase
         $username = 'J';
         $locale = 'en';
 
-        $responseUsername = $this->post(route('profile.update.informations'), [
+        $responseUsername = $this->post(route('profile.update.information'), [
             'username' => $username,
         ]);
 
         $responseUsername->assertRedirectBackWithErrors('username');
 
-        $responseLocale = $this->post(route('profile.update.informations'), [
+        $responseLocale = $this->post(route('profile.update.information'), [
             'locale' => $locale,
         ]);
 

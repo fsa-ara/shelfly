@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Account\ProfileInformationsRequest;
+use App\Http\Requests\Account\ProfileInformationRequest;
 use App\Http\Requests\Account\ProfileSecurityRequest;
 use App\Models\Account\Profile;
 use App\Models\User;
@@ -19,7 +19,7 @@ class ProfileController extends Controller
         return view('account.profile');
     }
 
-    public function updateInformations(ProfileInformationsRequest $request): RedirectResponse
+    public function updateInformation(ProfileInformationRequest $request): RedirectResponse
     {
         /** @var User $user */
         $user = $request->user();
@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $profile->updateOrFail($credentials);
 
         return back()->with([
-            'status' => __('account/profile.status.success.informations_updated'),
+            'status' => __('account/profile.status.success.information_updated'),
         ]);
     }
 
@@ -53,7 +53,7 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login')->with([
-            'status' => __('account/profile.status.success.security_updated'),
+            'status' => __('account/profile.status.success.password_updated'),
         ]);
     }
 

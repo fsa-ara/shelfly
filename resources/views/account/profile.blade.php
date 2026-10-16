@@ -9,12 +9,12 @@
         </div>
         <div>
             <x-tab.list aria-label="{{ __('account/profile.tab.label') }}">
-                <x-button.tab id="profile-informations-tab"
+                <x-button.tab id="profile-information-tab"
                               role="tab"
-                              aria-controls="profile-informations-panel"
+                              aria-controls="profile-information-panel"
                               aria-selected="true"
                               tabindex="0"
-                              text="{{ __('account/profile.tab.button.informations') }}" />
+                              text="{{ __('account/profile.tab.button.information') }}" />
                 <x-button.tab id="profile-security-tab"
                               role="tab"
                               aria-controls="profile-security-panel"
@@ -22,15 +22,15 @@
                               tabindex="-1"
                               text="{{ __('account/profile.tab.button.security') }}" />
             </x-tab.list>
-            <x-tab.panel id="profile-informations-panel"
-                         aria-labelledby="profile-informations-tab"
+            <x-tab.panel id="profile-information-panel"
+                         aria-labelledby="profile-information-tab"
                          tabindex="0">
                 <div @class(['mb-8'])>
-                    <x-form id="profile-informations-form"
-                            action="{{ route('profile.update.informations') }}"
+                    <x-form id="profile-information-form"
+                            action="{{ route('profile.update.information') }}"
                             method="post">
                         <div @class(['flex flex-col gap-4 mb-4'])>
-                            <x-form.input id="profile-informations-username-field"
+                            <x-form.input id="profile-information-username-field"
                                           name="username"
                                           type="text"
                                           value="{{ request()->user()->profile->username }}"
@@ -38,7 +38,7 @@
                                           required
                                           label="{{ __('account/profile.input.label.username') }}"
                                           :isInvalid="$errors->has('username')" />
-                            <x-form.select id="profile-informations-locale-select"
+                            <x-form.select id="profile-information-locale-select"
                                            name="locale"
                                            required
                                            label="{{ __('account/profile.select.label.locale') }}"
@@ -56,9 +56,9 @@
                     </x-form>
                 </div>
                 <div>
-                    <x-button.primary form="profile-informations-form"
+                    <x-button.primary form="profile-information-form"
                                       type="submit"
-                                      text="{{ __('account/profile.button.submit.informations') }}" />
+                                      text="{{ __('account/profile.button.submit.information') }}" />
                 </div>
                 <div @class(['mt-8'])>
                     <x-form id="profile-delete-form"
