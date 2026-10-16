@@ -43,9 +43,9 @@
                                            required
                                            label="{{ 'Select your language' }}"
                                            :isInvalid="$errors->has('locale')">
-                                @foreach ($availableLocales as $code => $name)
-                                    <option value="{{ $code }}"
-                                            @selected($code === $userLocale)>{{ $name }}</option>
+                                @foreach (config('app.supported_locales') as $locale => $name)
+                                    <option value="{{ $locale }}"
+                                            @selected($locale === request()->user()->profile->locale)>{{ $name }}</option>
                                 @endforeach
                             </x-form.select>
                             <div @class(['h-16'])>
