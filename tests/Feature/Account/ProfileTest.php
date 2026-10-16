@@ -99,7 +99,6 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user);
 
-
         $responseCurrentPassword = $this->post(route('profile.update.security'), [
             'current_password' => str_shuffle($currentPassword),
             'password' => $newPassword,
