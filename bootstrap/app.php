@@ -2,6 +2,7 @@
 
 use App\Exceptions\Auth\EmailVerificationException;
 use App\Http\Middleware\Auth\EnsureUserIsUnverified;
+use App\Http\Middleware\EnsureLocalization;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
+            'localization' => EnsureLocalization::class,
             'unverified' => EnsureUserIsUnverified::class,
         ]);
     })
