@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\Account\Profile;
 use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
@@ -40,11 +40,12 @@ class EmailVerificationTest extends TestCase
     public function test_valid_verification_link_verifies_user(): void
     {
         $user = User::factory()
+            ->has(Profile::factory())
             ->create([
                 'email_verified_at' => null,
             ]);
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         $url = URL::temporarySignedRoute(
             'verification.verify',
@@ -65,11 +66,12 @@ class EmailVerificationTest extends TestCase
     public function test_invalid_verification_link_redirects_user(): void
     {
         $user = User::factory()
+            ->has(Profile::factory())
             ->create([
                 'email_verified_at' => null,
             ]);
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         $url = URL::temporarySignedRoute(
             'verification.verify',
@@ -91,11 +93,12 @@ class EmailVerificationTest extends TestCase
     public function test_user_can_send_email_verification(): void
     {
         $user = User::factory()
+            ->has(Profile::factory())
             ->create([
                 'email_verified_at' => null,
             ]);
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         Notification::fake();
 
@@ -113,7 +116,7 @@ class EmailVerificationTest extends TestCase
                 'email_verified_at' => null,
             ]);
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         $attempts = 0;
 
@@ -128,9 +131,11 @@ class EmailVerificationTest extends TestCase
 
     public function test_verified_user_cannot_access_email_verification_page(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()
+            ->has(Profile::factory())
+            ->create();
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         $response = $this->get(route('verification.notice'));
 
