@@ -1,11 +1,11 @@
-<x-app title="Sign in">
+<x-app title="{{ __('auth/login.title') }}">
     <x-card.auth>
         <div @class(['mb-2'])>
             <x-typography.heading level="1"
-                                  content="{{ 'Sign in' }}" />
+                                  content="{{ __('auth/login.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>Sign in to your {{ config('app.name') }} account to access all services.</p>
+            <p>{{ __('auth/login.description.subtitle', ['app' => config('app.name')]) }}</p>
         </div>
         <div @class(['mb-8'])>
             <x-form id="sign-in-form"
@@ -18,13 +18,13 @@
                                   value="{{ old('email') }}"
                                   autocomplete="username"
                                   required
-                                  label="{{ 'Enter your email' }}"
+                                  label="{{ __('auth/login.input.label.email') }}"
                                   :isInvalid="$errors->has('email')" />
                     <x-form.input id="sign-in-password-field"
                                   name="password"
                                   type="password"
                                   required
-                                  label="{{ 'Enter your password' }}"
+                                  label="{{ __('auth/login.input.label.password') }}"
                                   :isInvalid="$errors->has('email')" />
                     <div @class(['h-8'])>
                         <x-form.error type="email" />
@@ -34,23 +34,23 @@
                     <x-form.input id="sign-in-remember-me-checkbox"
                                   name="remember_me"
                                   type="checkbox"
-                                  label="{{ 'Remember me' }}" />
+                                  label="{{ __('auth/login.input.label.remember_me') }}" />
                 </div>
             </x-form>
         </div>
         <div>
             <x-button.primary form="sign-in-form"
                               type="submit"
-                              text="{{ 'Sign in' }}" />
+                              text="{{ __('auth/login.button.submit') }}" />
         </div>
         <div @class(['my-8 text-center'])>
             <x-nav.link href="{{ route('password.request') }}"
-                        text="{{ 'Forgot your password?' }}" />
+                        text="{{ __('auth/login.link.forgot_password') }}" />
         </div>
         <div @class(['flex flex-col gap-2 items-center'])>
-            <p>Don't have a {{ config('app.name') }} account?</p>
+            <p>{{ __('auth/login.description.sign_up', ['app' => config('app.name')]) }}</p>
             <x-nav.link href="{{ route('register') }}"
-                        text="{{ 'Sign up' }}" />
+                        text="{{ __('auth/login.link.sign_up') }}" />
         </div>
     </x-card.auth>
 </x-app>
