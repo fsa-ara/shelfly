@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <x-app.head title="{{ $title ? $title . ' | ' . config('app.name') : config('app.name') }}" />
 
