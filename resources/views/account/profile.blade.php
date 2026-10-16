@@ -1,26 +1,26 @@
-<x-app title="Profile">
+<x-app title="{{ __('account/profile.title') }}">
     <x-card.profile>
         <div @class(['mb-2'])>
             <x-typography.heading level="1"
-                                  content="{{ 'Profile' }}" />
+                                  content="{{ __('account/profile.heading') }}" />
         </div>
         <div @class(['mb-16 text-center'])>
-            <p>Manage your personal information and account security.</p>
+            <p>{{ __('account/profile.description.subheading') }}</p>
         </div>
         <div>
-            <x-tab.list aria-label="{{ 'Profile tabs' }}">
+            <x-tab.list aria-label="{{ __('account/profile.tab.label') }}">
                 <x-button.tab id="profile-informations-tab"
                               role="tab"
                               aria-controls="profile-informations-panel"
                               aria-selected="true"
                               tabindex="0"
-                              text="{{ 'Informations' }}" />
+                              text="{{ __('account/profile.tab.button.informations') }}" />
                 <x-button.tab id="profile-security-tab"
                               role="tab"
                               aria-controls="profile-security-panel"
                               aria-selected="false"
                               tabindex="-1"
-                              text="{{ 'Security' }}" />
+                              text="{{ __('account/profile.tab.button.security') }}" />
             </x-tab.list>
             <x-tab.panel id="profile-informations-panel"
                          aria-labelledby="profile-informations-tab"
@@ -36,12 +36,12 @@
                                           value="{{ request()->user()->profile->username }}"
                                           autocomplete="username"
                                           required
-                                          label="{{ 'Enter your username' }}"
+                                          label="{{ __('account/profile.input.label.username') }}"
                                           :isInvalid="$errors->has('username')" />
                             <x-form.select id="profile-informations-locale-select"
                                            name="locale"
                                            required
-                                           label="{{ 'Select your language' }}"
+                                           label="{{ __('account/profile.select.label.locale') }}"
                                            :isInvalid="$errors->has('locale')">
                                 @foreach (config('app.supported_locales') as $locale => $name)
                                     <option value="{{ $locale }}"
@@ -58,7 +58,7 @@
                 <div>
                     <x-button.primary form="profile-informations-form"
                                       type="submit"
-                                      text="{{ 'Update' }}" />
+                                      text="{{ __('account/profile.button.submit.informations') }}" />
                 </div>
                 <div @class(['mt-8'])>
                     <x-form id="profile-delete-form"
@@ -69,7 +69,7 @@
                             <x-button.danger type="button"
                                              command="show-modal"
                                              commandfor="profile-delete-dialog"
-                                             text="{{ 'Delete your account' }}" />
+                                             text="{{ __('account/profile.modal.button.show') }}" />
                         </div>
                     </div>
                 </div>
@@ -87,15 +87,16 @@
                         </div>
                     </div>
                     <div @class(['flex flex-col my-8'])>
-                        <div @class(['font-bold text-center text-2xl'])>
-                            <p>Delete your account</p>
+                        <div>
+                            <x-typography.heading level="1"
+                                                  content="{{ __('account/profile.modal.heading') }}" />
                         </div>
                         <div @class(['my-4'])>
                             <div @class(['text-center'])>
-                                <p>Are you sure?</p>
+                                <p>{{ __('account/profile.modal.question') }}</p>
                             </div>
                             <div @class(['text-red-700 dark:text-red-300', 'text-center'])>
-                                <p>This action cannot be undone!</p>
+                                <p>{{ __('account/profile.modal.warning') }}</p>
                             </div>
                         </div>
                     </div>
@@ -103,12 +104,12 @@
                         <div @class(['flex gap-4'])>
                             <x-button.danger form="profile-delete-form"
                                              type="submit"
-                                             text="{{ 'Yes, delete' }}" />
+                                             text="{{ __('account/profile.button.submit.delete') }}" />
                             <x-button.secondary type="button"
                                                 autofocus
                                                 command="close"
                                                 commandfor="profile-delete-dialog"
-                                                text="{{ 'No, keep it' }}" />
+                                                text="{{ __('account/profile.modal.button.close') }}" />
                         </div>
                     </div>
                 </x-modal.dialog>
@@ -131,21 +132,21 @@
                                           type="password"
                                           autocomplete="current-password"
                                           required
-                                          label="{{ 'Enter your current password' }}"
+                                          label="{{ __('account/profile.input.label.current_password') }}"
                                           :isInvalid="$errors->has('current_password')" />
                             <x-form.input id="profile-security-password-field"
                                           name="password"
                                           type="password"
                                           autocomplete="new-password"
                                           required
-                                          label="{{ 'Enter your new password' }}"
+                                          label="{{ __('account/profile.input.label.password') }}"
                                           :isInvalid="$errors->has('password')" />
                             <x-form.input id="profile-security-password-confirmation-field"
                                           name="password_confirmation"
                                           type="password"
                                           autocomplete="new-password"
                                           required
-                                          label="{{ 'Confirm your new password' }}"
+                                          label="{{ __('account/profile.input.label.password_confirmation') }}"
                                           :isInvalid="$errors->has('password')" />
                             <div @class(['h-16'])>
                                 <x-form.error type="current_password" />
@@ -157,7 +158,7 @@
                 <div>
                     <x-button.primary form="profile-security-form"
                                       type="submit"
-                                      text="{{ 'Update' }}" />
+                                      text="{{ __('account/profile.button.submit.security') }}" />
                 </div>
             </x-tab.panel>
     </x-card.profile>
