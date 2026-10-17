@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <x-app.head title="{{ $title ? $title . ' | ' . config('app.name') : config('app.name') }}" />
+    <x-app.head :title="$title ? $title . ' | ' . config('app.name') : config('app.name')" />
 
     <body @class([
         'bg-slate-100 dark:bg-slate-900',

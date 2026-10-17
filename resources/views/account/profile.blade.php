@@ -1,8 +1,8 @@
-<x-app title="{{ __('account/profile.title') }}">
+<x-app :title="__('account/profile.title')">
     <x-card.profile>
         <div @class(['mb-2'])>
             <x-typography.heading level="1"
-                                  content="{{ __('account/profile.heading') }}" />
+                                  :content="__('account/profile.heading')" />
         </div>
         <div @class(['mb-16 text-center'])>
             <p>{{ __('account/profile.description.subheading') }}</p>
@@ -14,13 +14,13 @@
                               aria-controls="profile-information-panel"
                               aria-selected="true"
                               tabindex="0"
-                              text="{{ __('account/profile.tab.button.information') }}" />
+                              :text="__('account/profile.tab.button.information')" />
                 <x-button.tab id="profile-security-tab"
                               role="tab"
                               aria-controls="profile-security-panel"
                               aria-selected="false"
                               tabindex="-1"
-                              text="{{ __('account/profile.tab.button.security') }}" />
+                              :text="__('account/profile.tab.button.security')" />
             </x-tab.list>
             <x-tab.panel id="profile-information-panel"
                          aria-labelledby="profile-information-tab"
@@ -36,12 +36,12 @@
                                           value="{{ request()->user()->profile->username }}"
                                           autocomplete="username"
                                           required
-                                          label="{{ __('account/profile.input.label.username') }}"
+                                          :label="__('account/profile.input.label.username')"
                                           :isInvalid="$errors->has('username')" />
                             <x-form.select id="profile-information-locale-select"
                                            name="locale"
                                            required
-                                           label="{{ __('account/profile.select.label.locale') }}"
+                                           :label="__('account/profile.select.label.locale')"
                                            :isInvalid="$errors->has('locale')">
                                 @foreach (config('app.supported_locales') as $locale => $name)
                                     <option value="{{ $locale }}"
@@ -58,7 +58,7 @@
                 <div>
                     <x-button.primary form="profile-information-form"
                                       type="submit"
-                                      text="{{ __('account/profile.button.submit.information') }}" />
+                                      :text="__('account/profile.button.submit.information')" />
                 </div>
                 <div @class(['mt-8'])>
                     <x-form id="profile-delete-form"
@@ -69,7 +69,7 @@
                             <x-button.danger type="button"
                                              command="show-modal"
                                              commandfor="profile-delete-dialog"
-                                             text="{{ __('account/profile.modal.button.show') }}" />
+                                             :text="__('account/profile.modal.button.show')" />
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                     <div @class(['flex flex-col my-8'])>
                         <div>
                             <x-typography.heading level="1"
-                                                  content="{{ __('account/profile.modal.heading') }}" />
+                                                  :content="__('account/profile.modal.heading')" />
                         </div>
                         <div @class(['my-4'])>
                             <div @class(['text-center'])>
@@ -104,12 +104,12 @@
                         <div @class(['flex gap-4'])>
                             <x-button.danger form="profile-delete-form"
                                              type="submit"
-                                             text="{{ __('account/profile.button.submit.delete') }}" />
+                                             :text="__('account/profile.button.submit.delete')" />
                             <x-button.secondary type="button"
                                                 autofocus
                                                 command="close"
                                                 commandfor="profile-delete-dialog"
-                                                text="{{ __('account/profile.modal.button.close') }}" />
+                                                :text="__('account/profile.modal.button.close')" />
                         </div>
                     </div>
                 </x-modal.dialog>
@@ -132,21 +132,21 @@
                                           type="password"
                                           autocomplete="current-password"
                                           required
-                                          label="{{ __('account/profile.input.label.current_password') }}"
+                                          :label="__('account/profile.input.label.current_password')"
                                           :isInvalid="$errors->has('current_password')" />
                             <x-form.input id="profile-security-password-field"
                                           name="password"
                                           type="password"
                                           autocomplete="new-password"
                                           required
-                                          label="{{ __('account/profile.input.label.password') }}"
+                                          :label="__('account/profile.input.label.password')"
                                           :isInvalid="$errors->has('password')" />
                             <x-form.input id="profile-security-password-confirmation-field"
                                           name="password_confirmation"
                                           type="password"
                                           autocomplete="new-password"
                                           required
-                                          label="{{ __('account/profile.input.label.password_confirmation') }}"
+                                          :label="__('account/profile.input.label.password_confirmation')"
                                           :isInvalid="$errors->has('password')" />
                             <div @class(['h-16'])>
                                 <x-form.error type="current_password" />
@@ -158,7 +158,7 @@
                 <div>
                     <x-button.primary form="profile-security-form"
                                       type="submit"
-                                      text="{{ __('account/profile.button.submit.security') }}" />
+                                      :text="__('account/profile.button.submit.security')" />
                 </div>
             </x-tab.panel>
     </x-card.profile>
