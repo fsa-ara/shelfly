@@ -39,7 +39,7 @@ class ResetPasswordController extends Controller
 
         return $status === Password::PasswordReset
             ? redirect()->route('login')->with([
-                'status' => __($status),
+                'status' => $status,
             ])
             : back()->withErrors([
                 'email' => __($status),
