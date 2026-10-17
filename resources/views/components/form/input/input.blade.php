@@ -3,11 +3,13 @@
     @case('password')
 
     @case('text')
-        <x-form.input.field {{ $attributes }} />
+        <x-form.input.field :label="$label"
+                            {{ $attributes }} />
     @break
 
     @case('checkbox')
-        <x-form.input.checkbox {{ $attributes }} />
+        <x-form.input.checkbox :label="$label"
+                               {{ $attributes }} />
     @break
 
     @default
