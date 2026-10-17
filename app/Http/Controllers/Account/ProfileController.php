@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $profile->updateOrFail($credentials);
 
         return back()->with([
-            'status' => __('account/profile.status.success.information_updated'),
+            'status' => 'account/profile.status.success.information_updated',
         ]);
     }
 
@@ -53,7 +53,7 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login')->with([
-            'status' => __('account/profile.status.success.password_updated'),
+            'status' => 'account/profile.status.success.password_updated',
         ]);
     }
 
@@ -70,7 +70,7 @@ class ProfileController extends Controller
         $user->deleteOrFail();
 
         return redirect()->route('home')->with([
-            'status' => __('account/profile.status.success.account_deleted'),
+            'status' => 'account/profile.status.success.account_deleted',
         ]);
     }
 }

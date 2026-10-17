@@ -24,7 +24,7 @@
             'text-lime-500',
             'px-4 py-2 rounded-2xl shadow-lg w-full',
         ])>
-            <p @class(['text-xs'])>{{ $value }}</p>
+            <p @class(['text-xs'])>{{ __($value) }}</p>
         </div>
     </div>
 @endsession
