@@ -1,6 +1,6 @@
 <div @class(['relative'])>
     <input aria-required="{{ $attributes['required'] ? 'true' : 'false' }}"
-           placeholder=""
+           placeholder=" "
            {{ $attributes }}
            @class([
                'peer',
