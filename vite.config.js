@@ -19,7 +19,7 @@ export default defineConfig({
     server: {
         port: 5173,
         strictPort: true,
-        origin: process.env.NGROK_URL,
+        origin: process.env.TUNNEL_URL,
         watch: {
             ignored: ["**/storage/framework/views/**"],
         },
