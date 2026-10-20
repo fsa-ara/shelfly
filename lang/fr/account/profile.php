@@ -59,5 +59,8 @@ return [
             'account_deleted' => 'Votre compte a été supprimé !',
         ],
     ],
+    'error' => [
+        'password' => 'Votre nouveau mot de passe doit être différent de votre mot de passe actuel.',
+    ],
 
 ];

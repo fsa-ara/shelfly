@@ -59,5 +59,8 @@ return [
             'account_deleted' => 'Your account has been deleted!',
         ],
     ],
+    'error' => [
+        'password' => 'Your new password must be different from your current password.',
+    ],
 
 ];
