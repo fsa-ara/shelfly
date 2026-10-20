@@ -4,7 +4,9 @@ namespace App\Http\Requests\Account;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Validator;
 
 class ProfileSecurityRequest extends FormRequest
 {
@@ -38,6 +40,25 @@ class ProfileSecurityRequest extends FormRequest
                     ->symbols()
                     ->uncompromised(3),
             ],
+        ];
+    }
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                if ($validator->errors()->has('current_password') || $validator->errors()->has('password')) return;
+
+                $currentPassword = $this->user()->password;
+                $newPassword = $this->input('password');
+
+                if (Hash::check($newPassword, $currentPassword)) {
+                    $validator->errors()->add(
+                        'password',
+                        'Your new password must be different from your current password.'
+                    );
+                }
+            }
         ];
     }
 }
