@@ -55,7 +55,7 @@ class ProfileSecurityRequest extends FormRequest
                 if (Hash::check($newPassword, $currentPassword)) {
                     $validator->errors()->add(
                         'password',
-                        'Your new password must be different from your current password.'
+                        'account/profile.error.password'
                     );
                 }
             }

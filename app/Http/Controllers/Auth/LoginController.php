@@ -29,7 +29,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => __('auth/login.error.email'),
+            'email' => 'auth/login.error.email',
         ])->onlyInput('email');
     }
 }

@@ -14,7 +14,7 @@ class EmailVerificationException extends Exception
     {
         if ($request->routeIs('verification.send')) {
             return back()->withErrors([
-                'email' => __('auth/email-verification.error.throttle'),
+                'email' => 'auth/email-verification.error.throttle',
             ]);
         }
 
@@ -25,7 +25,7 @@ class EmailVerificationException extends Exception
     {
         if ($request->routeIs('verification.verify')) {
             return redirect()->route('verification.notice')->withErrors([
-                'email' => __('auth/email-verification.error.invalid_signature'),
+                'email' => 'auth/email-verification.error.invalid_signature',
             ]);
         }
 
