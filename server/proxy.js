@@ -19,6 +19,7 @@ const siteProxy = createProxyMiddleware({
     target: `${process.env.APP_URL}`,
     changeOrigin: true,
     secure: true,
+    xfwd: true,
     on: {
         error: (err) => {
             console.error("Site proxy error: ", err);
