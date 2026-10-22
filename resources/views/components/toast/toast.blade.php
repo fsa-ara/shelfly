@@ -1,13 +1,14 @@
 @session('status')
     <div data-toast
          @class([
-             'absolute flex gap-4 inset-x-4 mx-auto',
+             'fixed flex gap-4 inset-x-4 mx-auto',
              'opacity-0 translate-y-4',
              'starting:data-toast:opacity-0 starting:data-toast:translate-y-0',
              'data-toast:opacity-100 data-toast:translate-y-4',
              'transition-[opacity,_translate] duration-500 ease-[cubic-bezier(0.5,_0,_0.25,_1)] delay-0',
              'data-toast:delay-[125ms,_0ms]',
              'sm:w-sm',
+             'lg:left-64 lg:right-0',
          ])>
         <div @class([
             'bg-black',
