@@ -17,12 +17,13 @@
             <x-header />
             <x-sidebar />
             <div @class([
+                'flex flex-col justify-between overflow-y-scroll',
                 'col-start-1 row-start-2',
-                'lg:h-dvh',
                 'lg:col-start-2 lg:row-start-1 lg:row-span-full',
             ])>
                 <x-toast />
-                <main @class(['px-4 size-full', 'sm:py-12', 'lg:overflow-y-scroll'])>{{ $slot }}</main>
+                <main @class(['px-4 h-min', 'sm:py-12'])>{{ $slot }}</main>
+                <x-footer />
             </div>
         </div>
     </body>
