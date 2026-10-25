@@ -1,58 +1,188 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Shelfly
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Shelfly is a web application designed to help users manage their food inventory. It aims to provide secure authentication, product management, barcode scanning, and stock tracking through a modern Laravel application.
 
-## About Laravel
+## Table of contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Purpose](#purpose)
+- [Features](#features)
+- [Dev Environment](#dev-environment)
+- [Status](#status)
+- [Installation](#installation)
+- [Documentation](docs/index.md)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Purpose
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The goal of this project is to build a complete inventory management application while applying Laravel best practices, exploring modern web development practices, and strengthening software architecture skills through hands-on experience.
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Authentication
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- ✅ Login
+- ✅ Remember me
+- ✅ Forgot / Reset password
+- ✅ Register
+- ✅ Email verification
+- ✅ Logout
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Account
 
-## Agentic Development
+- ✅ Information
+- ✅ Security
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Overview
+
+- 🚧 Dashboard (user)
+- 🚧 Dashboard (admin)
+- 🚧 Product management (admin)
+- 🚧 Inventory management (user)
+- 🚧 Barcode scanner (user)
+
+## Dev Environment
+
+| Technology   | Version   |
+| ------------ | --------- |
+| Herd         | 1.30.x    |
+| Laravel      | 13.33.x   |
+| PHP          | 8.4.x     |
+| MySQL        | 9.7.x     |
+| Mailpit      | 1.31.x    |
+| Cloudflared  | 2026.10.x |
+| Blade        |           |
+| Tailwind CSS |           |
+| Vite         |           |
+
+## Status
+
+[![herd][herd]][herd-url]
+[![laravel][laravel]][laravel-url]
+[![php][php]][php-url]
+[![mysql][mysql]][mysql-url]
+[![mailpit][mailpit]][mailpit-url]
+[![cloudflared][cloudflared]][cloudflared-url]
+[![license][license]][license-url]
+
+## Installation
+
+### Install Laravel Herd
+
+Herd provides a PHP and Laravel development environment, including PHP, Composer, and the Laravel CLI. It also supports managing PHP and Node.js versions.
+
+After installation, verify that the required tools are available in your terminal:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+herd --version
+php --version
+laravel --version
+composer --version
+node --version
+npm --version
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Make sure the required PHP and Node.js versions are selected and available.
 
-## Contributing
+### Install MySQL 9.7 LTS
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+brew install mysql@9.7
+brew services start mysql@9.7
+```
 
-## Code of Conduct
+Make sure the MySQL service is running before proceeding with the database migrations:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+brew services list
+```
 
-## Security Vulnerabilities
+### Install Mailpit
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Mailpit is used to test outgoing emails in the local development environment.
 
-## License
+```bash
+brew install mailpit
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Start Mailpit in a separate terminal:
+
+```bash
+mailpit
+```
+
+The Mailpit web interface is available at `http://localhost:8025`.
+
+Configure your mail settings in `.env` to route outgoing emails to Mailpit.
+
+### Install Cloudflared
+
+Shelfly uses Cloudflare Quick Tunnels to expose the local application for testing on other devices.
+
+```bash
+brew install cloudflared
+```
+
+### Clone the repository
+
+```bash
+cd ~/Herd
+git clone https://github.com/fsa-ara/shelfly.git
+cd shelfly
+```
+
+### Install dependencies
+
+```bash
+composer install
+npm ci
+```
+
+### Configure the environment
+
+```bash
+cp .env.example .env
+```
+
+Configure your environment variables in `.env`, including your database connection settings.
+
+Generate the application key:
+
+```bash
+php artisan key:generate
+```
+
+Run the migrations:
+
+```bash
+php artisan migrate
+```
+
+If the configured database does not exist, Laravel will prompt you to create it.
+
+### Start the application
+
+Start Shelfly and its development tunnel:
+
+```bash
+npm run start:server
+```
+
+Use the URL displayed in the terminal to access the application from another device.
+
+Note: The Cloudflare Quick Tunnel URL changes when the tunnel restarts.
+
+---
+
+[herd]: https://img.shields.io/badge/Herd-v1.30.x-f9332b
+[herd-url]: https://herd.laravel.com/
+[laravel]: https://img.shields.io/badge/Laravel-v13.33.x-f55247
+[laravel-url]: https://laravel.com/
+[php]: https://img.shields.io/badge/PHP-v8.4.x-8892be
+[php-url]: https://www.php.net/
+[mysql]: https://img.shields.io/badge/MySQL-v9.7.x-00758f
+[mysql-url]: https://www.mysql.com/
+[mailpit]: https://img.shields.io/badge/Mailpit-v1.31.x-34aa8b
+[mailpit-url]: https://mailpit.axllent.org/
+[cloudflared]: https://img.shields.io/badge/Cloudflared-v2026.10.x-ff5e1e
+[cloudflared-url]: https://developers.cloudflare.com/
+[license]: https://img.shields.io/badge/License-MIT-blue.svg
+[license-url]: LICENSE
