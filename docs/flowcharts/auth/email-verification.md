@@ -4,21 +4,21 @@
 flowchart TB
 
 ev --> | yes | rtpp
-ev --> | no | rtvnp
-rtvnp --> vlr
+ev --> | no | rtevp
+rtevp --> vlr
 vlr --> | no | rnvl
 rnvl --> fs
 fs --> | no | rnvl
 fs --> | yes | rtr
 rtr --> | no | vls
-vls --> rtvnp
+vls --> rtevp
 rtr --> | yes | dte
-dte --> rtvnp
+dte --> rtevp
 vlr --> | yes | vlo
 vlo --> | no | vlr
 vlo --> | yes | sv
 sv --> | no | dve
-dve --> rtvnp
+dve --> rtevp
 sv --> | yes | rtip
 rtip --> evs
 
@@ -30,7 +30,7 @@ vlo@{ shape: diamond, label: "Verification link opened?" }
 sv@{ shape: diamond, label: "Signature validated?" }
 
 rtpp@{ shape: rounded, label: "Redirect to previous page" }
-rtvnp@{ shape: rounded, label: "Redirect to verification notice page" }
+rtevp@{ shape: rounded, label: "Redirect to email verification page" }
 rnvl@{ shape: rounded, label: "Request new verification link" }
 vls@{ shape: rounded, label: "Verification link sent" }
 dte@{ shape: rounded, label: "Display throttling error" }
