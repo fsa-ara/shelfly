@@ -3,8 +3,8 @@
 ```mermaid
 flowchart TB
 
-ev --> | yes | rtpp
-ev --> | no | rtevp
+uiv --> | yes | rtpp
+uiv --> | no | rtevp
 rtevp --> vlr
 vlr --> | no | rnvl
 rnvl --> fs
@@ -22,7 +22,7 @@ dve --> rtevp
 sv --> | yes | rtip
 rtip --> evs
 
-ev@{ shape: diamond, label: "Email verified?" }
+uiv@{ shape: diamond, label: "User is verified?" }
 vlr@{ shape: diamond, label: "Verification link received?" }
 fs@{ shape: diamond, label: "Form submitted?" }
 rtr@{ shape: diamond, label: "Request throttle reached?" }
