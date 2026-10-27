@@ -31,7 +31,6 @@ dve@{ shape: rounded, label: "Display validation error" }
 htnp@{ shape: rounded, label: "Hash the new password" }
 rtrt@{ shape: rounded, label: "Regenerate the remember token" }
 sdid@{ shape: rounded, label: "Save data in database" }
-dve@{ shape: rounded, label: "Display validation error" }
 dsm@{ shape: rounded, label: "Display success message" }
 rtlp@{ shape: rounded, label: "Redirect to login page" }
 ```
