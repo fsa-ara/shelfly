@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable('admin')]
+#[Fillable(['admin'])]
 #[Hidden(['id', 'user_id'])]
 class Role extends Model
 {
