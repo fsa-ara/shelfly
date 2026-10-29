@@ -22,7 +22,7 @@ class EnsureUserIsAdmin
         if (!$user->role->admin) {
             return redirect()->intended()->with([
                 'status' => [
-                    'error' => 'You don\'t have administrator privileges',
+                    'error' => 'admin.status.error',
                 ],
             ]);
         }
