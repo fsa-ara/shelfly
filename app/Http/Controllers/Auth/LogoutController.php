@@ -17,7 +17,9 @@ class LogoutController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login')->with([
-            'status' => 'auth/logout.status.success',
+            'status' => [
+                'success' => 'auth/logout.status.success',
+            ],
         ]);
     }
 }
