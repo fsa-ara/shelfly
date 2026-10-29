@@ -13,7 +13,8 @@
         <div @class([
             'bg-black',
             'shadow-slate-400 dark:shadow-slate-600',
-            'text-lime-500',
+            'text-lime-500' => array_key_exists('success', $value),
+            'text-red-500' => array_key_exists('error', $value),
             'aspect-square h-8 p-1 rounded-full shadow-lg',
         ])>
             <x-icon component="icon.countdown"
@@ -22,10 +23,13 @@
         <div @class([
             'bg-black',
             'shadow-slate-400 dark:shadow-slate-600',
-            'text-lime-500',
+            'text-lime-500' => array_key_exists('success', $value),
+            'text-red-500' => array_key_exists('error', $value),
             'px-4 py-2 rounded-2xl shadow-lg w-full',
         ])>
-            <p @class(['text-xs'])>{{ __($value) }}</p>
+            @foreach ($value as $type => $message)
+                <p @class(['text-xs'])>{{ __($message) }}</p>
+            @endforeach
         </div>
     </div>
 @endsession

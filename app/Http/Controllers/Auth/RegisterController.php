@@ -46,7 +46,9 @@ class RegisterController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('verification.notice')->with([
-            'status' => 'auth/register.status.success',
+            'status' => [
+                'success' => 'auth/register.status.success',
+            ],
         ]);
     }
 
