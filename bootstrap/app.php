@@ -3,6 +3,7 @@
 use App\Exceptions\Auth\EmailVerificationException;
 use App\Http\Middleware\Auth\EnsureUserIsUnverified;
 use App\Http\Middleware\EnsureLocalization;
+use App\Http\Middleware\EnsureUserIsAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->prependToPriorityList(ThrottleRequests::class, EnsureLocalization::class);
 
         $middleware->alias([
+            'admin' => EnsureUserIsAdmin::class,
             'localization' => EnsureLocalization::class,
             'unverified' => EnsureUserIsUnverified::class,
         ]);
