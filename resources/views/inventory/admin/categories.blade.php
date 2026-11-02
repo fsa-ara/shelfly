@@ -42,8 +42,8 @@
     </div>
     <x-layout.list>
         @if ($categories->isEmpty())
-            <div>
-                <p>{{ __('inventory/admin/category.description.empty_categories') }}</p>
+            <div @class(['col-span-full flex h-32 items-center justify-center'])>
+                <p @class(['text-center'])>{{ __('inventory/admin/category.description.empty_categories') }}</p>
             </div>
         @else
             @foreach ($categories as $category)
