@@ -92,10 +92,10 @@
                 </div>
             </div>
             <div>
+                <x-form id="categories-delete-form"
+                        action="{{ route('admin.categories.delete') }}"
+                        method="post" />
                 <div @class(['flex gap-4'])>
-                    <x-form id="categories-delete-form"
-                            action="{{ route('admin.categories.delete') }}"
-                            method="post" />
                     <x-button.danger form="categories-delete-form"
                                      type="submit"
                                      :text="__('inventory/admin/category.button.submit.delete')" />

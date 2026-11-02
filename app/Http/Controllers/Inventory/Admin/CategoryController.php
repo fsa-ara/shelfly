@@ -7,6 +7,7 @@ use App\Models\Account\Profile;
 use App\Models\Inventory\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -63,6 +64,17 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function allDelete(): RedirectResponse
+    {
+        Category::query()->delete();
+
+        return redirect()->route('admin.categories')->with([
+            'status' => [
+                'success' => 'inventory/admin/category.status.success.categories_deleted',
+            ],
+        ]);
     }
 
     private function getLocalizedCategories(): Collection
