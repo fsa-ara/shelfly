@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Inventory\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Admin\CategoryCreateRequest;
 use App\Models\Account\Profile;
 use App\Models\Inventory\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -18,28 +21,42 @@ class CategoryController extends Controller
         return view('inventory.admin.categories', ['categories' => $this->getLocalizedCategories()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function add(): View
     {
-        //
+        return view('inventory.admin.category-add', ['data' => $this->getLocalizationsData()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function create(CategoryCreateRequest $request): RedirectResponse
     {
-        //
-    }
+        /** @var User $user */
+        $user = $request->user();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        /** @var Profile $profile */
+        $profile = $user->profile;
+
+        $credentials = $request->validated();
+
+        DB::transaction(function () use ($credentials) {
+            $category = Category::query()->create([
+                'uuid' => Str::uuid(),
+            ]);
+
+            foreach ($credentials['translations'] as $locale => $value) {
+                $category->translations()->create([
+                    'locale' => $locale,
+                    'name' => $value['name'],
+                ]);
+            }
+        });
+
+        return redirect()->route('admin.categories')->with([
+            'status' => [
+                'success' => __(
+                    'inventory/admin/category.status.success.category_created',
+                    ['name' => $credentials['translations'][$profile->locale]['name'] ?? $credentials['translations']['en_US']['name']]
+                ),
+            ],
+        ]);
     }
 
     /**
@@ -54,14 +71,6 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
     {
         //
     }
@@ -98,5 +107,23 @@ class CategoryController extends Controller
         }
 
         return $categories;
+    }
+
+    private function getLocalizationsData(): array
+    {
+        $data = [];
+
+        $supportedLocales = config('app.supported_locales');
+
+        foreach ($supportedLocales as $locale => $language) {
+            $data += [
+                $locale => [
+                    'language' => $language,
+                    'country' => array_last(explode('_', strtolower($locale))),
+                ],
+            ];
+        }
+
+        return $data;
     }
 }

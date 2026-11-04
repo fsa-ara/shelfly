@@ -13,15 +13,23 @@ return [
 
     'title' => [
         'categories' => 'Admin - Catégories',
+        'add_category' => 'Admin - Ajouter une catégorie',
     ],
     'heading' => [
         'categories' => 'Catégories',
+        'add_category' => 'Ajouter une catégorie',
     ],
     'description' => [
         'subheading' => [
             'categories' => 'Gérer les catégories.',
+            'add_category' => 'Ajoutez une catégorie et ses traductions',
         ],
         'empty_categories' => "Il n'y a pas encore de catégories. Commencez par en créer une.",
+    ],
+    'input' => [
+        'label' => [
+            'name' => 'Nom',
+        ],
     ],
     'button' => [
         'submit' => [
@@ -45,6 +53,7 @@ return [
     'status' => [
         'success' => [
             'categories_deleted' => 'Les catégories ont été supprimées !',
+            'category_created' => 'La catégorie :name a bien été créée !',
         ],
     ],
 

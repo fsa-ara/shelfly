@@ -197,6 +197,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'translations.*.name' => 'name',
+    ],
 
 ];

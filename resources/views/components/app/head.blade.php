@@ -10,5 +10,7 @@
           crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+          rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

@@ -13,15 +13,23 @@ return [
 
     'title' => [
         'categories' => 'Admin - Categories',
+        'add_category' => 'Admin - Add a category',
     ],
     'heading' => [
         'categories' => 'Categories',
+        'add_category' => 'Add a category',
     ],
     'description' => [
         'subheading' => [
             'categories' => 'Manage the categories.',
+            'add_category' => 'Add a category and its translations',
         ],
         'empty_categories' => 'No categories yet. Start by creating one.',
+    ],
+    'input' => [
+        'label' => [
+            'name' => 'Name',
+        ],
     ],
     'button' => [
         'submit' => [
@@ -45,6 +53,7 @@ return [
     'status' => [
         'success' => [
             'categories_deleted' => 'The categories have been deleted!',
+            'category_created' => 'The :name category has indeed been created!',
         ],
     ],
 
