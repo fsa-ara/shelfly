@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Inventory\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('localization')
@@ -57,9 +58,9 @@ Route::middleware('localization')
                     });
             });
 
-        Route::middleware(['auth', 'verified'])
+        Route::prefix('account')
             ->group(function () {
-                Route::prefix('account')
+                Route::middleware(['auth', 'verified'])
                     ->group(function () {
                         Route::get('/profile', [ProfileController::class, 'index'])
                             ->name('profile');
@@ -69,6 +70,25 @@ Route::middleware('localization')
                             ->name('profile.update.security');
                         Route::post('/profile/delete', [ProfileController::class, 'delete'])
                             ->name('profile.delete');
+                    });
+            });
+
+        Route::prefix('admin')
+            ->group(function () {
+                Route::middleware(['auth', 'admin'])
+                    ->group(function () {
+                        Route::get('/categories', [CategoryController::class, 'index'])
+                            ->name('admin.categories');
+                        Route::post('/categories/delete', [CategoryController::class, 'allDelete'])
+                            ->name('admin.categories.delete');
+                        Route::get('/category/add', [CategoryController::class, 'add'])
+                            ->name('admin.category.add');
+                        Route::post('/category/create', [CategoryController::class, 'create'])
+                            ->name('admin.category.create');
+                        Route::get('/category/edit/{uuid}', [])
+                            ->name('admin.category.edit');
+                        Route::post('/category/delete', [])
+                            ->name('admin.category.delete');
                     });
             });
     });
