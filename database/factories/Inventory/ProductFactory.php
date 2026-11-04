@@ -19,12 +19,12 @@ class ProductFactory extends Factory
     {
         return [
             'uuid' => fake()->unique()->uuid(),
-            'barcode' => '3033710074525',
-            'brand' => 'NESCAFÉ',
-            'name' => 'Café instantané, special filtre',
-            'unit_count' => 1,
-            'measure_value' => 200,
-            'measure_unit' => 'g',
+            'barcode' => fake()->randomNumber('#############'),
+            'brand' => fake()->company(),
+            'name' => fake()->name(),
+            'unit_count' => fake()->numberBetween(1, 50),
+            'measure_value' => fake()->numberBetween(50, 1000),
+            'measure_unit' => fake()->randomElement(['g', 'mL']),
         ];
     }
 }

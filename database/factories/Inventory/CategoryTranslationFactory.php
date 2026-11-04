@@ -18,8 +18,8 @@ class CategoryTranslationFactory extends Factory
     public function definition(): array
     {
         return [
-            'locale' => 'fr_FR',
-            'name' => 'Boissons',
+            'locale' => 'en_US',
+            'name' => fake()->word(),
         ];
     }
 }
