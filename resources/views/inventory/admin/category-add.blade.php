@@ -42,15 +42,17 @@
             <div>
                 <x-button.primary form="category-add-form"
                                   type="submit"
-                                  :text="__('Create')" />
+                                  :text="__('inventory/admin/category.button.submit.add_category.create')" />
             </div>
             <div @class(['flex justify-center mt-8'])>
                 <a href="{{ route('admin.categories') }}"
                    @class([
                        'border-slate-700 dark:border-slate-300',
+                       'focus:outline-sky-500',
                        'hover:bg-slate-700 dark:hover:bg-slate-300',
                        'hover:text-slate-300 dark:hover:text-slate-700',
                        'aspect-square border flex h-12 items-center justify-center rounded-full',
+                       'focus:outline-1 focus:outline-offset-2',
                    ])>
                     <div @class(['h-6'])>
                         <x-icon component="icon.arrow-back" />

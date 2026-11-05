@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Inventory\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Inventory\Admin\CategoryCreateRequest;
+use App\Http\Requests\Inventory\Admin\CategoryRequest;
 use App\Models\Account\Profile;
 use App\Models\Inventory\Category;
 use App\Models\User;
@@ -26,7 +26,7 @@ class CategoryController extends Controller
         return view('inventory.admin.category-add', ['data' => $this->getLocalizationsData()]);
     }
 
-    public function create(CategoryCreateRequest $request): RedirectResponse
+    public function create(CategoryRequest $request): RedirectResponse
     {
         /** @var User $user */
         $user = $request->user();
@@ -53,26 +53,49 @@ class CategoryController extends Controller
             'status' => [
                 'success' => __(
                     'inventory/admin/category.status.success.category_created',
-                    ['name' => $credentials['translations'][$profile->locale]['name'] ?? $credentials['translations']['en_US']['name']]
+                    ['name' => $credentials['translations'][$profile->locale]['name'] ?? $credentials['translations']['en_US']['name']],
                 ),
             ],
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(string $uuid): View
     {
-        //
+        return view('inventory.admin.category-edit', [
+            'uuid' => $uuid,
+            'data' => $this->getCategoryData(),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $uuid): RedirectResponse
     {
-        //
+        /** @var User $user */
+        $user = $request->user();
+
+        /** @var Profile $profile */
+        $profile = $user->profile;
+
+        $credentials = $request->validated();
+
+        $category = Category::with('translations')
+            ->where('uuid', $uuid)
+            ->firstOrFail();
+
+        foreach ($credentials['translations'] as $locale => $value) {
+            $category->translations()->updateOrCreate(
+                ['locale' => $locale],
+                ['name' => $value['name']],
+            );
+        }
+
+        return redirect()->route('admin.categories')->with([
+            'status' => [
+                'success' => __(
+                    'inventory/admin/category.status.success.category_updated',
+                    ['name' => $credentials['translations'][$profile->locale]['name'] ?? $credentials['translations']['en_US']['name']],
+                ),
+            ],
+        ]);
     }
 
     public function allDelete(): RedirectResponse
@@ -103,7 +126,7 @@ class CategoryController extends Controller
             $categoryTranslation = $translations->firstWhere('locale', $profile->locale);
             $defaultTranslation = $translations->firstWhere('locale', 'en_US');
 
-            $category->translation = $categoryTranslation ?? $defaultTranslation;
+            $category->translation = $categoryTranslation->name ? $categoryTranslation : $defaultTranslation;
         }
 
         return $categories;
@@ -118,8 +141,30 @@ class CategoryController extends Controller
         foreach ($supportedLocales as $locale => $language) {
             $data += [
                 $locale => [
-                    'language' => $language,
                     'country' => array_last(explode('_', strtolower($locale))),
+                    'language' => $language,
+                ],
+            ];
+        }
+
+        return $data;
+    }
+
+    private function getCategoryData(): array
+    {
+        $data = [];
+
+        $category = Category::with('translations')
+            ->where('uuid', request()->uuid)
+            ->firstOrFail();
+
+        $translations = $category->translations->keyBy('locale');
+
+        foreach ($translations as $locale => $infos) {
+            $data += [
+                $locale => [
+                    'country' => array_last(explode('_', strtolower($locale))),
+                    'name' => $infos['name'],
                 ],
             ];
         }

@@ -98,7 +98,7 @@
                 <div @class(['flex gap-4'])>
                     <x-button.danger form="categories-delete-form"
                                      type="submit"
-                                     :text="__('inventory/admin/category.button.submit.delete')" />
+                                     :text="__('inventory/admin/category.button.submit.categories.delete')" />
                     <x-button.secondary type="button"
                                         autofocus
                                         command="close"
