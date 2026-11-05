@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <div @class(['h-16'])>
+                    <div @class(['h-8'])>
                         <x-form.error type="translations.*.name" />
                     </div>
                 </x-form>
@@ -43,6 +43,19 @@
                 <x-button.primary form="category-add-form"
                                   type="submit"
                                   :text="__('Create')" />
+            </div>
+            <div @class(['flex justify-center mt-8'])>
+                <a href="{{ route('admin.categories') }}"
+                   @class([
+                       'border-slate-700 dark:border-slate-300',
+                       'hover:bg-slate-700 dark:hover:bg-slate-300',
+                       'hover:text-slate-300 dark:hover:text-slate-700',
+                       'aspect-square border flex h-12 items-center justify-center rounded-full',
+                   ])>
+                    <div @class(['h-6'])>
+                        <x-icon component="icon.arrow-back" />
+                    </div>
+                </a>
             </div>
         </div>
     </div>
