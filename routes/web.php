@@ -89,7 +89,7 @@ Route::middleware('localization')
                             ->name('admin.category.edit');
                         Route::post('/category/edit/{uuid}', [CategoryController::class, 'update'])
                             ->name('admin.category.update');
-                        Route::post('/category/delete', [])
+                        Route::post('/category/delete/{uuid}', [CategoryController::class, 'delete'])
                             ->name('admin.category.delete');
                     });
             });

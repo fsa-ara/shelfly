@@ -77,6 +77,7 @@ return [
     'status' => [
         'success' => [
             'categories_deleted' => 'The categories have been deleted!',
+            'category_deleted' => 'The :name category have been deleted!',
             'category_created' => 'The :name category has been created!',
             'category_updated' => 'The :name category has been updated!',
         ],

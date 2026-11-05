@@ -98,6 +98,37 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function delete(string $uuid): RedirectResponse
+    {
+        /** @var User $user */
+        $user = request()->user();
+
+        /** @var Profile $profile */
+        $profile = $user->profile;
+
+        $category = Category::query()
+            ->where('uuid', $uuid)
+            ->firstOrFail();
+
+        $name = $category->translations
+            ->firstWhere('locale', $profile->locale)
+            ?->name
+            ?? $category->translations
+            ->firstWhere('locale', 'en_US')
+            ?->name;
+
+        $category->delete();
+
+        return redirect()->route('admin.categories')->with([
+            'status' => [
+                'success' => __(
+                    'inventory/admin/category.status.success.category_deleted',
+                    ['name' => $name],
+                ),
+            ],
+        ]);
+    }
+
     public function allDelete(): RedirectResponse
     {
         Category::query()->delete();

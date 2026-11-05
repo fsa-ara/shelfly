@@ -103,7 +103,7 @@
         </div>
         <div>
             <x-form id="category-delete-form"
-                    action="{{ route('admin.category.delete') }}"
+                    action="{{ route('admin.category.delete', ['uuid' => $uuid]) }}"
                     method="post" />
             <div @class(['flex gap-4'])>
                 <x-button.danger form="category-delete-form"
