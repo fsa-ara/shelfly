@@ -1,8 +1,13 @@
 @auth
-    <section @class(['bg-white dark:bg-black', 'sticky top-0'])>
+    <section @class(['bg-white dark:bg-black', 'sticky top-0 z-10'])>
         <div @class(['flex h-12 items-center'])>
             <p @class(['font-bold truncate'])>{{ __('components/sidebar.auth.greeting', ['username' => request()->user()->profile->username]) }}</p>
         </div>
+    </section>
+    <section>
+        @auth
+            <x-sidebar.nav.admin />
+        @endauth
     </section>
     <section>
         <x-sidebar.nav.heading :content="__('components/sidebar.auth.section.my_account')" />

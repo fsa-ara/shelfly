@@ -23,9 +23,14 @@ return [
     'auth' => [
         'greeting' => 'Hi, :username',
         'section' => [
+            'inventory' => 'Inventory',
             'my_account' => 'My account',
         ],
         'link' => [
+            'categories' => [
+                'label' => 'Go to the categories page',
+                'text' => 'Categories',
+            ],
             'profile' => [
                 'label' => 'Go to the profile page',
                 'text' => 'Profile',

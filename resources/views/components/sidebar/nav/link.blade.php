@@ -11,7 +11,8 @@
        'focus:outline-1',
    ])>
     <div @class(['aspect-square h-6'])>
-        <x-icon :component="$icon" />
+        <x-icon :component="$icon"
+                :viewBox="$viewBox ?? null" />
     </div>
     {{ $text }}
 </a>
