@@ -17,14 +17,10 @@ class ProductSeeder extends Seeder
     {
         Product::factory()
             ->for(Category::factory())
+            ->count(10)
             ->create([
                 'category_id' => 1,
-                'barcode' => '3033710074525',
                 'brand' => 'NESCAFÉ',
-                'name' => 'Café instantané, special filtre',
-                'unit_count' => 1,
-                'measure_value' => 200,
-                'measure_unit' => 'g',
             ]);
     }
 }

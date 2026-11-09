@@ -19,12 +19,13 @@ class ProductFactory extends Factory
     {
         return [
             'uuid' => fake()->unique()->uuid(),
-            'barcode' => fake()->randomNumber('#############'),
+            'barcode' => fake()->numerify('#############'),
             'brand' => fake()->company(),
-            'name' => fake()->name(),
+            'name' => fake()->words(10, true),
             'unit_count' => fake()->numberBetween(1, 50),
             'measure_value' => fake()->numberBetween(50, 1000),
             'measure_unit' => fake()->randomElement(['g', 'mL']),
+            'img' => fake()->randomElement(['products/default.png', null]),
         ];
     }
 }
