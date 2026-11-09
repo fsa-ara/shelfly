@@ -40,7 +40,7 @@
             </button>
         @endif
     </div>
-    <x-layout.list>
+    <x-layout.category.list>
         @if ($categories->isEmpty())
             <div @class(['col-span-full flex h-32 items-center justify-center'])>
                 <p @class(['text-center'])>{{ __('inventory/admin/category.description.empty_categories') }}</p>
@@ -107,5 +107,5 @@
                 </div>
             </div>
         </x-modal.dialog>
-    </x-layout.list>
+    </x-layout.category.list>
 </x-app>
