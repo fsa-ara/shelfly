@@ -60,7 +60,7 @@
                                                 viewBox="0 0 24 24" />
                                     </div>
                                 @else
-                                    <img src="{{ asset('storage/' . $product->img) }}"
+                                    <img src="{{ glideImage($product->img, 128) }}"
                                          alt=""
                                          @class(['object-contain p-2 size-full'])>
                                 @endif
