@@ -1,10 +1,10 @@
-<x-app :title="__('Admin - Products')">
+<x-app :title="__('inventory/admin/product.title.products')">
     <div @class(['mb-2 mt-16', 'sm:mt-4', 'lg:mt-0'])>
         <x-typography.heading level="1"
-                              :content="__('Products')" />
+                              :content="__('inventory/admin/product.heading.products')" />
     </div>
     <div @class(['mb-16 text-center'])>
-        <p>{{ __('Manage the products.') }}</p>
+        <p>{{ __('inventory/admin/product.description.subheading.products') }}</p>
     </div>
     <div @class([
         'bg-slate-100/25 dark:bg-slate-900/25',
@@ -43,7 +43,7 @@
     <x-layout.product.list>
         @if ($products->isEmpty())
             <div @class(['col-span-full flex h-32 items-center justify-center'])>
-                <p @class(['text-center'])>{{ __('No products yet. Start by creating one.') }}</p>
+                <p @class(['text-center'])>{{ __('inventory/admin/product.description.empty_products') }}</p>
             </div>
         @else
             @foreach ($products as $product)
@@ -101,17 +101,17 @@
             <div @class(['flex flex-col my-8'])>
                 <div>
                     <x-typography.heading level="1"
-                                          :content="__('Delete all products')" />
+                                          :content="__('inventory/admin/product.modal.products.heading')" />
                 </div>
                 <div @class(['my-4'])>
                     <div @class(['text-center'])>
-                        <p>{{ __('Are you sure?') }}</p>
+                        <p>{{ __('inventory/admin/product.modal.products.question') }}</p>
                     </div>
                     <div @class(['text-red-700 dark:text-red-300', 'text-center'])>
-                        <p>{{ __('This action cannot be undone!') }}</p>
+                        <p>{{ __('inventory/admin/product.modal.products.warning') }}</p>
                     </div>
                     <ul @class(['list-disc mt-8 pl-4'])>
-                        @foreach (['All products will be deleted.', 'Categories will remain.'] as $information)
+                        @foreach (__('inventory/admin/product.modal.products.informations') as $information)
                             <li>{{ $information }}</li>
                         @endforeach
                     </ul>
@@ -124,12 +124,12 @@
                 <div @class(['flex gap-4'])>
                     <x-button.danger form="products-delete-form"
                                      type="submit"
-                                     :text="__('Delete')" />
+                                     :text="__('inventory/admin/product.button.submit.products.delete')" />
                     <x-button.secondary type="button"
                                         autofocus
                                         command="close"
                                         commandfor="products-delete-dialog"
-                                        :text="__('Cancel')" />
+                                        :text="__('inventory/admin/product.modal.products.button.close')" />
                 </div>
             </div>
         </x-modal.dialog>
