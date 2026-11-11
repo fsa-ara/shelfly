@@ -18,7 +18,7 @@ class ProductController extends Controller
             'barcode',
             'brand',
             'name',
-            'img',
+            'image',
         ])]);
     }
 

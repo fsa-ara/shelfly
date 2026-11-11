@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('unit_count');
             $table->integer('measure_value');
             $table->string('measure_unit');
-            $table->string('img')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

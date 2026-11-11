@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'unit_count' => fake()->numberBetween(1, 50),
             'measure_value' => fake()->numberBetween(50, 1000),
             'measure_unit' => fake()->randomElement(['g', 'mL']),
-            'img' => fake()->randomElement(['products/default.png', null]),
+            'image' => fake()->randomElement(['products/default.png', null]),
         ];
     }
 }
