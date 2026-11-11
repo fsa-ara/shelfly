@@ -1,5 +1,7 @@
 @switch($type)
     @case('email')
+    @case('number')
+
     @case('password')
 
     @case('text')
