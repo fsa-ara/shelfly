@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Inventory\Product;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -67,5 +68,16 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function allDelete(): RedirectResponse
+    {
+        Product::query()->delete();
+
+        return redirect()->route('admin.products')->with([
+            'status' => [
+                'success' => 'inventory/admin/product.status.success.products_deleted',
+            ],
+        ]);
     }
 }
