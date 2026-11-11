@@ -54,13 +54,13 @@
                                 'bg-slate-200 dark:bg-slate-800',
                                 'aspect-square h-full p-1 rounded-xl',
                             ])>
-                                @if (!$product->img)
+                                @if (!$product->image)
                                     <div @class(['p-8'])>
                                         <x-icon component="icon.photo-camera"
                                                 viewBox="0 0 24 24" />
                                     </div>
                                 @else
-                                    <img src="{{ glideImage($product->img, 128) }}"
+                                    <img src="{{ glideImage($product->image, 128) }}"
                                          alt=""
                                          @class(['object-contain p-2 size-full'])>
                                 @endif
