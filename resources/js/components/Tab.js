@@ -4,13 +4,11 @@ export class Tab {
     #tabPanels;
 
     constructor() {
-        this.#tabList = document.querySelector("[role=tablist]");
+        this.#tabList = document.querySelector('[role=tablist]');
 
         if (this.#tabList) {
-            this.#tabs = this.#tabList.querySelectorAll(":scope > [role=tab]");
-            this.#tabPanels = this.#tabList.parentElement.querySelectorAll(
-                ":scope > [role=tabpanel]",
-            );
+            this.#tabs = this.#tabList.querySelectorAll(':scope > [role=tab]');
+            this.#tabPanels = this.#tabList.parentElement.querySelectorAll(':scope > [role=tabpanel]');
 
             this.#init();
             this.#onClick();
@@ -19,11 +17,9 @@ export class Tab {
     }
 
     #init = () => {
-        const tabPathname = sessionStorage.getItem("tab_pathname");
-        const tabId = sessionStorage.getItem("tab_id");
-        const tabButton = [...this.#tabs].find(
-            (tab) => tab.getAttribute("aria-controls") === tabId,
-        );
+        const tabPathname = sessionStorage.getItem('tab_pathname');
+        const tabId = sessionStorage.getItem('tab_id');
+        const tabButton = [...this.#tabs].find((tab) => tab.getAttribute('aria-controls') === tabId);
 
         if (tabPathname === window.location.pathname && tabButton) {
             this.#switchTab(tabButton);
@@ -36,16 +32,16 @@ export class Tab {
 
     #onClick = () => {
         this.#tabs.forEach((tab) => {
-            tab.addEventListener("click", this.#switchTab);
+            tab.addEventListener('click', this.#switchTab);
         });
     };
 
     #onKeyboard = () => {
         let tabFocus = [...this.#tabs].findIndex((tab) => tab.tabIndex === 0);
 
-        this.#tabList.addEventListener("keydown", (e) => {
-            if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-                if (e.key === "ArrowLeft") {
+        this.#tabList.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                if (e.key === 'ArrowLeft') {
                     tabFocus--;
 
                     if (tabFocus < 0) {
@@ -70,7 +66,7 @@ export class Tab {
         const tabButton = e.currentTarget ?? e;
 
         this.#tabs.forEach((tab) => {
-            tab.ariaSelected = "false";
+            tab.ariaSelected = 'false';
             tab.tabIndex = -1;
         });
 
@@ -78,7 +74,7 @@ export class Tab {
             tabPanel.hidden = true;
         });
 
-        tabButton.ariaSelected = "true";
+        tabButton.ariaSelected = 'true';
         tabButton.tabIndex = 0;
         tabButton.ariaControlsElements[0].hidden = false;
 
@@ -89,12 +85,12 @@ export class Tab {
         const tabPathname = window.location.pathname;
         const tabId = tabButton.ariaControlsElements[0].id;
 
-        sessionStorage.setItem("tab_pathname", tabPathname);
-        sessionStorage.setItem("tab_id", tabId);
+        sessionStorage.setItem('tab_pathname', tabPathname);
+        sessionStorage.setItem('tab_id', tabId);
     };
 
     #removeStorage = () => {
-        sessionStorage.removeItem("tab_pathname");
-        sessionStorage.removeItem("tab_id");
+        sessionStorage.removeItem('tab_pathname');
+        sessionStorage.removeItem('tab_id');
     };
 }
