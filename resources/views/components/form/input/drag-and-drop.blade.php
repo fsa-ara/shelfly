@@ -36,7 +36,7 @@
                         'focus:outline-sky-500',
                         'hover:bg-red-400 dark:hover:bg-red-600',
                         'hover:text-white',
-                        'absolute bottom-0 cursor-pointer h-12 m-2 p-2 right-0 rounded-full',
+                        'absolute aspect-square bottom-0 cursor-pointer h-12 m-2 p-2 right-0 rounded-full',
                         'focus:outline-1',
                     ])>
                 <x-icon component="icon.delete"
