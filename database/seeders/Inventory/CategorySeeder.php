@@ -15,6 +15,18 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::factory()
+            ->count(10)
+            ->has(CategoryTranslation::factory(), 'translations')
+            ->has(
+                CategoryTranslation::factory()
+                    ->state([
+                        'locale' => 'fr_FR',
+                    ]),
+                'translations'
+            )
+            ->create();
+
+        Category::factory()
             ->has(
                 CategoryTranslation::factory()
                     ->state([
