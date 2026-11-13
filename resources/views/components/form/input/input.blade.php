@@ -3,7 +3,6 @@
     @case('number')
 
     @case('password')
-
     @case('text')
         <x-form.input.field :label="$label"
                             {{ $attributes }} />
@@ -12,6 +11,10 @@
     @case('checkbox')
         <x-form.input.checkbox :label="$label"
                                {{ $attributes }} />
+    @break
+
+    @case('file')
+        <x-form.input.drag-and-drop {{ $attributes }} />
     @break
 
     @default
