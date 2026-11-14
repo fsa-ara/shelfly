@@ -31,6 +31,10 @@ return [
                 'label' => 'Accéder à la page des catégories',
                 'text' => 'Catégories',
             ],
+            'products' => [
+                'label' => 'Accéder à la page des produits',
+                'text' => 'Produits',
+            ],
             'profile' => [
                 'label' => 'Accéder à la page de profil',
                 'text' => 'Profil',

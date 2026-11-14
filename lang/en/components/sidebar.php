@@ -31,6 +31,10 @@ return [
                 'label' => 'Go to the categories page',
                 'text' => 'Categories',
             ],
+            'products' => [
+                'label' => 'Go to the products page',
+                'text' => 'Products',
+            ],
             'profile' => [
                 'label' => 'Go to the profile page',
                 'text' => 'Profile',

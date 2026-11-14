@@ -9,6 +9,12 @@
                                     icon="icon.category"
                                     viewBox="0 0 24 24" />
             </li>
+            <li>
+                <x-sidebar.nav.link :aria-label="__('components/sidebar.auth.link.products.label')"
+                                    route="admin.products"
+                                    :text="__('components/sidebar.auth.link.products.text')"
+                                    icon="icon.grocery" />
+            </li>
         </ul>
     </nav>
 @endif
