@@ -91,6 +91,21 @@ Route::middleware('localization')
                             ->name('admin.category.update');
                         Route::post('/category/delete/{uuid}', [CategoryController::class, 'delete'])
                             ->name('admin.category.delete');
+
+                        Route::get('/products', [ProductController::class, 'index'])
+                            ->name('admin.products');
+                        Route::post('/products/delete', [ProductController::class, 'allDelete'])
+                            ->name('admin.products.delete');
+                        Route::get('/product/add', [ProductController::class, 'add'])
+                            ->name('admin.product.add');
+                        Route::post('/product/create', [ProductController::class, 'create'])
+                            ->name('admin.product.create');
+                        Route::get('/product/edit/{uuid}', [ProductController::class, 'edit'])
+                            ->name('admin.product.edit');
+                        Route::post('/product/edit/{uuid}', [ProductController::class, 'update'])
+                            ->name('admin.product.update');
+                        Route::post('/product/delete/{uuid}', [ProductController::class, 'delete'])
+                            ->name('admin.product.delete');
                     });
             });
     });
