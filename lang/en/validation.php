@@ -198,6 +198,7 @@ return [
     */
 
     'attributes' => [
+        'category_id' => 'category',
         'translations.*.name' => 'name',
     ],
 

@@ -58,8 +58,8 @@ return [
     'ends_with' => 'The :attribute field must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
     'exists' => 'The selected :attribute is invalid.',
-    'extensions' => 'The :attribute field must have one of the following extensions: :values.',
-    'file' => 'The :attribute field must be a file.',
+    'extensions' => "Le champ :attribute doit avoir l'une des extensions suivantes : :values.",
+    'file' => 'Le champ :attribute doit être un fichier.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
         'array' => 'The :attribute field must have more than :value items.',
@@ -74,11 +74,11 @@ return [
         'string' => 'The :attribute field must be greater than or equal to :value characters.',
     ],
     'hex_color' => 'The :attribute field must be a valid hexadecimal color.',
-    'image' => 'The :attribute field must be an image.',
+    'image' => 'Le champ :attribute doit contenir une image.',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field must exist in :other.',
     'in_array_keys' => 'The :attribute field must contain at least one of the following keys: :values.',
-    'integer' => 'The :attribute field must be an integer.',
+    'integer' => 'Le champ :attribute doit être un nombre entier.',
     'ip' => 'The :attribute field must be a valid IP address.',
     'ipv4' => 'The :attribute field must be a valid IPv4 address.',
     'ipv6' => 'The :attribute field must be a valid IPv6 address.',
@@ -102,10 +102,10 @@ return [
         'array' => 'The :attribute field must not have more than :max items.',
         'file' => 'The :attribute field must not be greater than :max kilobytes.',
         'numeric' => 'The :attribute field must not be greater than :max.',
-        'string' => 'The :attribute field must not be greater than :max characters.',
+        'string' => 'Le champ :attribute ne doit pas dépasser :max caractères.',
     ],
     'max_digits' => 'The :attribute field must not have more than :max digits.',
-    'mimes' => 'The :attribute field must be a file of type: :values.',
+    'mimes' => 'Le champ :attribute doit contenir un fichier de type : :values.',
     'mimetypes' => 'The :attribute field must be a file of type: :values.',
     'min' => [
         'array' => 'The :attribute field must have at least :min items.',
@@ -141,7 +141,7 @@ return [
     'prohibited_if_declined' => 'The :attribute field is prohibited when :other is declined.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
-    'regex' => 'The :attribute field format is invalid.',
+    'regex' => "Le format du champ :attribute n'est pas valide.",
     'required' => 'Le champ :attribute est obligatoire.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
@@ -184,11 +184,20 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'barcode' => [
+            'unique' => 'Ce code-barres est déjà pris.',
+        ],
+        'category_id' => [
+            'exists' => "La catégorie sélectionnée n'est pas valide.",
+        ],
         'email' => [
             'unique' => 'Cette adresse e-mail est déjà prise.',
         ],
         'locale' => [
             'in' => "La langue sélectionnée n'est pas valide.",
+        ],
+        'measure_unit' => [
+            'in' => "L'unité de mesure sélectionnée n'est pas valide.",
         ],
     ],
 
@@ -204,8 +213,15 @@ return [
     */
 
     'attributes' => [
+        'barcode' => 'code-barres',
+        'brand' => 'marque',
+        'category_id' => 'catégorie',
         'email' => 'e-mail',
+        'measure_unit' => 'unité de mesure',
+        'measure_value' => 'mesure',
+        'name' => 'nom',
         'password' => 'mot de passe',
+        'unit_count' => "nombre d'unités",
         'username' => "nom d'utilisateur",
         'translations.*.name' => 'nom',
     ],
