@@ -7,8 +7,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\GlideController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Inventory\Admin\CategoryController;
+use App\Http\Controllers\Inventory\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('localization')
@@ -109,3 +111,6 @@ Route::middleware('localization')
                     });
             });
     });
+
+Route::get('/storage/images/{path}', [GlideController::class, 'show'])
+    ->where('path', '.*');
