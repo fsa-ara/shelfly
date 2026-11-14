@@ -6,7 +6,7 @@
                 'border-slate-300 dark:border-slate-700' => !$isInvalid,
                 'border-red-300 dark:border-red-700' => $isInvalid,
                 'focus:border-sky-300 dark:focus:border-sky-700',
-                'appearance-none border-b h-12 outline-none pr-8 pt-4 w-full',
+                'appearance-none border-b h-12 outline-none pr-8 pt-4 relative w-full z-10',
             ])>{{ $slot }}</select>
     <label for="{{ $attributes['id'] }}"
            @class([
@@ -16,7 +16,7 @@
                'absolute cursor-text flex h-1/2 items-center text-xs top-0 translate-y-0',
            ])>{{ $label }}</label>
     <div @class([
-        'absolute flex h-full items-center justify-center pt-4 right-0 top-0 w-8 -z-10',
+        'absolute flex h-full items-center justify-center pt-4 right-0 top-0 w-8',
     ])>
         <div @class(['size-3.5'])>
             <x-icon component="icon.keyboard-arrow-down" />
