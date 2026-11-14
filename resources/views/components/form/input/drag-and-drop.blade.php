@@ -7,7 +7,8 @@
                data-dragging="false"
                for="{{ $attributes['id'] }}"
                @class([
-                   'border-slate-500',
+                   'border-slate-500' => !$isInvalid,
+                   'border-red-300 dark:border-red-700' => $isInvalid,
                    'text-slate-700 dark:text-slate-300',
                    'hover:bg-sky-100 dark:hover:bg-sky-900',
                    'hover:border-sky-500',
