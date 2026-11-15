@@ -1,5 +1,8 @@
 <div @class(['relative'])>
     <div @class(['size-48'])>
+        <input name="remove_image"
+               value="0"
+               hidden />
         <input aria-required="{{ $attributes['required'] ? 'true' : 'false' }}"
                {{ $attributes }}
                @class(['sr-only'])>
@@ -15,6 +18,7 @@
                    'data-[dragging=true]:bg-sky-100 dark:data-[dragging=true]:bg-sky-900',
                    'data-[dragging=true]:border-sky-500',
                    'border-4 border-dashed cursor-pointer flex flex-col gap-4 justify-center p-4 rounded-4xl size-full',
+                   'hidden' => isset($src) ?? false,
                ])>
             <div @class(['h-12 w-full'])>
                 <x-icon component="icon.upload"
@@ -26,11 +30,12 @@
             </div>
         </label>
         <div data-preview
-             @class(['absolute hidden size-full top-0'])>
-            <img @class([
-                'bg-slate-200 dark:bg-slate-800',
-                'object-contain p-4 rounded-4xl size-48',
-            ])>
+             @class(['absolute size-full top-0', 'hidden' => !isset($src) ?? true])>
+            <img src="{{ isset($src) ? glideImage($src, 256) : '' }}"
+                 @class([
+                     'bg-slate-200 dark:bg-slate-800',
+                     'object-contain p-4 rounded-4xl size-48',
+                 ])>
             <button type="button"
                     @class([
                         'bg-white dark:bg-black',

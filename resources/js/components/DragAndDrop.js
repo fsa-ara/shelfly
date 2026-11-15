@@ -34,14 +34,19 @@ export class DragAndDrop {
             this.#setUrl(e);
             this.#handleFile(e);
             this.#handlePreview();
+            this.#toggleImageRemovalState();
         });
 
         this.#input.addEventListener('change', (e) => {
             this.#setUrl(e);
             this.#handlePreview();
+            this.#toggleImageRemovalState();
         });
 
-        this.#trigger.addEventListener('click', () => this.#clear());
+        this.#trigger.addEventListener('click', () => {
+            this.#clear();
+            this.#toggleImageRemovalState();
+        });
     };
 
     #setUrl = (e) => {
@@ -65,6 +70,16 @@ export class DragAndDrop {
 
         this.#dropzone.classList.add('hidden');
         this.#preview.parentElement.classList.remove('hidden');
+    };
+
+    #toggleImageRemovalState = () => {
+        const removeImage = this.#dropzone.parentElement.querySelector('input[name=remove_image]');
+
+        if (Boolean(this.#url)) {
+            removeImage.value = 0;
+        } else {
+            removeImage.value = 1;
+        }
     };
 
     #clear = () => {
