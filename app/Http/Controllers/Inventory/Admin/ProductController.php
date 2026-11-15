@@ -71,45 +71,82 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function edit(string $uuid): View
     {
-        //
+        return view('inventory.admin.product-edit', [
+            'uuid' => $uuid,
+            'product' => Product::query()->where('uuid', $uuid)->firstOrFail(),
+            'categories' => $this->getLocalizedCategories(),
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(ProductRequest $request, Server $server, string $uuid): RedirectResponse
     {
-        //
+        $product = Product::query()->where('uuid', $uuid)->firstOrFail();
+
+        $currentImage = $product->image;
+
+        $updateImage = $this->updateImage($request, $product);
+
+        $credentials = $request->validated();
+
+        $product->updateOrFail([
+            'barcode' => $credentials['barcode'],
+            'brand' => $credentials['brand'],
+            'name' => $credentials['name'],
+            'unit_count' => $credentials['unit_count'],
+            'measure_value' => $credentials['measure_value'],
+            'measure_unit' => $credentials['measure_unit'],
+            'image' => $updateImage,
+            'category_id' => $credentials['category_id'],
+        ]);
+
+        if ($currentImage && (($updateImage !== $currentImage) || $request->boolean('remove_image'))) {
+            Storage::disk('public')->delete($currentImage);
+
+            $server->deleteCache($currentImage);
+        }
+
+        return redirect()->route('admin.products')->with([
+            'status' => [
+                'success' => __(
+                    'inventory/admin/product.status.success.product_updated',
+                    ['name' => $credentials['name']],
+                ),
+            ],
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function delete(Server $server, string $uuid): RedirectResponse
     {
-        //
-    }
+        $product = Product::query()->where('uuid', $uuid)->firstOrFail();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $name = $product->name;
+        $image = $product->image;
+
+        $product->delete();
+
+        if ($image) {
+            Storage::disk('public')->delete($image);
+
+            $server->deleteCache($image);
+        }
+
+        return redirect()->route('admin.products')->with([
+            'status' => [
+                'success' => __(
+                    'inventory/admin/product.status.success.product_deleted',
+                    ['name' => $name],
+                ),
+            ],
+        ]);
     }
 
     public function allDelete(Server $server): RedirectResponse
     {
         $images = Product::query()->pluck('image')->filter()->all();
 
-        DB::transaction(function () {
-            Product::query()->delete();
-        });
+        Product::query()->delete();
 
         Storage::disk('public')->delete($images);
 
@@ -147,5 +184,20 @@ class ProductController extends Controller
         }
 
         return $data;
+    }
+
+    private function updateImage(ProductRequest $request, Product $product): string|null
+    {
+        $newImage = $request->file('image')?->store('products', 'public');
+
+        if ($request->boolean('remove_image')) {
+            $updateImage = null;
+        } elseif ($newImage) {
+            $updateImage = $newImage;
+        } else {
+            $updateImage = $product->image;
+        }
+
+        return $updateImage;
     }
 }

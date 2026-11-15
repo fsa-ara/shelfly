@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Inventory\Admin;
 
+use App\Models\Inventory\Product;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -23,6 +24,12 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        $product = $this->getProduct();
+
+        $uniqueRule = Rule::unique('products', 'barcode');
+
+        if ($product) $uniqueRule->ignore($product->id);
+
         return [
             'image' => [
                 'nullable',
@@ -38,7 +45,7 @@ class ProductRequest extends FormRequest
                 'required',
                 'regex:/^[0-9]+$/',
                 Rule::string(),
-                Rule::unique('products', 'barcode'),
+                $uniqueRule,
             ],
             'brand' => [
                 'required',
@@ -71,5 +78,14 @@ class ProductRequest extends FormRequest
                 Rule::exists('categories', 'id'),
             ],
         ];
+    }
+
+    private function getProduct(): Product|null
+    {
+        if (!$this->route('uuid')) return null;
+
+        return Product::query()
+            ->where('uuid', $this->route('uuid'))
+            ->firstOrFail();
     }
 }

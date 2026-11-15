@@ -14,15 +14,18 @@ return [
     'title' => [
         'products' => 'Admin - Produits',
         'add_product' => 'Admin - Ajouter un produit',
+        'edit_product' => 'Admin - Éditer un produit',
     ],
     'heading' => [
         'products' => 'Produits',
         'add_product' => 'Ajouter un produit',
+        'edit_product' => 'Éditer un produit',
     ],
     'description' => [
         'subheading' => [
             'products' => 'Gérer les produits.',
             'add_product' => 'Renseigner les informations du produit',
+            'edit_product' => 'Éditer les informations du produit',
         ],
         'empty_products' => "Il n'y a pas encore de produits. Commencez par en créer un.",
     ],
@@ -49,6 +52,10 @@ return [
             'add_product' => [
                 'create' => 'Créer',
             ],
+            'edit_product' => [
+                'delete' => 'Supprimer',
+                'update' => 'Mise à jour',
+            ],
         ],
     ],
     'modal' => [
@@ -64,11 +71,25 @@ return [
                 'Les catégories seront conservées.',
             ],
         ],
+        'edit_product' => [
+            'button' => [
+                'close' => 'Annuler',
+            ],
+            'heading' => 'Supprimer le produit',
+            'question' => 'Souhaitez-vous vraiment supprimer le produit ?',
+            'warning' => 'Cette action est irréversible !',
+            'informations' => [
+                'Le produit sera supprimé.',
+                'La catégorie sera conservée.',
+            ],
+        ],
     ],
     'status' => [
         'success' => [
             'products_deleted' => 'Les produits ont été supprimés !',
+            'product_deleted' => 'Le produit :name a été supprimé !',
             'product_created' => 'Le produit :name a été créé !',
+            'product_updated' => 'Le produit :name a été mis à jour !',
         ],
     ],
 
