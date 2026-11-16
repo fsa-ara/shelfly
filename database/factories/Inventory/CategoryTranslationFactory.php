@@ -19,7 +19,7 @@ class CategoryTranslationFactory extends Factory
     {
         return [
             'locale' => 'en_US',
-            'name' => fake()->word(),
+            'name' => fake()->unique()->word(),
         ];
     }
 }
