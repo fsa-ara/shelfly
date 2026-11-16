@@ -21,13 +21,7 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        return view('inventory.admin.products', ['products' => Product::query()->get([
-            'uuid',
-            'barcode',
-            'brand',
-            'name',
-            'image',
-        ])]);
+        return view('inventory.admin.products', ['products' => Product::query()->paginate(30)]);
     }
 
     public function add(): View

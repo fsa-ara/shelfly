@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -140,7 +141,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    private function getLocalizedCategories(): Collection
+    private function getLocalizedCategories(): LengthAwarePaginator
     {
         /** @var User $user */
         $user = request()->user();
@@ -148,7 +149,7 @@ class CategoryController extends Controller
         /** @var Profile $profile */
         $profile = $user->profile;
 
-        $categories = Category::with('translations')->get();
+        $categories = Category::with('translations')->paginate(30);
 
         foreach ($categories as $category) {
             /** @var Collection $translations */

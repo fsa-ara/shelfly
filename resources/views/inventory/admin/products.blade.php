@@ -8,7 +8,7 @@
     </div>
     <div @class([
         'bg-slate-100/25 dark:bg-slate-900/25',
-        'backdrop-blur-lg flex gap-2 h-12 mb-8 min-w-max -mx-4 p-2 px-8 sticky top-0',
+        'backdrop-blur-lg flex gap-2 h-12 mb-8 min-w-max -mx-4 px-8 py-2 sticky top-0',
     ])>
         <a href="{{ route('admin.product.add') }}"
            @class([
@@ -134,4 +134,5 @@
             </div>
         </x-modal.dialog>
     </x-layout.product.list>
+    {{ $products->links('components.nav.pagination') }}
 </x-app>
