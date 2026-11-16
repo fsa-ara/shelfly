@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
     {
         Product::factory()
             ->for(Category::factory())
-            ->count(10)
+            ->count(50)
             ->create([
                 'category_id' => 1,
                 'brand' => 'NESCAFÉ',
