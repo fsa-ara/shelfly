@@ -53,7 +53,6 @@
                                           type="number"
                                           value="{{ $product->unit_count }}"
                                           min="0"
-                                          required
                                           :label="__('inventory/admin/product.input.label.unit_count')"
                                           :isInvalid="$errors->has('unit_count')" />
                             <div @class(['flex gap-4'])>
@@ -63,16 +62,15 @@
                                                   type="number"
                                                   value="{{ $product->measure_value }}"
                                                   min="0"
-                                                  required
                                                   :label="__('inventory/admin/product.input.label.measure_value')"
                                                   :isInvalid="$errors->has('measure_value')" />
                                 </div>
                                 <div @class(['flex-1'])>
                                     <x-form.select id="product-measure-unit-select"
                                                    name="measure_unit"
-                                                   required
                                                    :label="__('inventory/admin/product.select.label.measure_unit')"
                                                    :isInvalid="$errors->has('measure_unit')">
+                                        <option value="">-</option>
                                         @foreach (['g', 'mL'] as $unit)
                                             <option value="{{ $unit }}"
                                                     @selected($unit === $product->measure_unit)>{{ $unit }}</option>

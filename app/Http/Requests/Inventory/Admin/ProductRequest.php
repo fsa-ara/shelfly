@@ -58,15 +58,15 @@ class ProductRequest extends FormRequest
                     ->max(128),
             ],
             'unit_count' => [
-                'required',
+                'nullable',
                 'integer',
             ],
             'measure_value' => [
-                'required',
+                'nullable',
                 'integer',
             ],
             'measure_unit' => [
-                'required',
+                'nullable',
                 Rule::in([
                     'g',
                     'mL',

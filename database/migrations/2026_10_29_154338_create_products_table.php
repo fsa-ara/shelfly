@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('barcode', 64)->unique();
             $table->string('brand', 128);
             $table->string('name', 128);
-            $table->integer('unit_count');
-            $table->integer('measure_value');
-            $table->string('measure_unit');
+            $table->integer('unit_count')->nullable();
+            $table->integer('measure_value')->nullable();
+            $table->string('measure_unit')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
