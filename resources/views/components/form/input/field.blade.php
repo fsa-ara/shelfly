@@ -7,7 +7,7 @@
                'border-slate-300 dark:border-slate-700' => !$isInvalid,
                'border-red-300 dark:border-red-700' => $isInvalid,
                'focus:border-sky-300 dark:focus:border-sky-700',
-               'border-b h-12 outline-none pt-4 w-full',
+               'relative border-b h-12 outline-none pt-4 w-full z-10',
                '[[type=number]]:[appearance:_textfield] [[type=number]]:m-0 [[type=number]]:pr-8',
                '[[type=number]::-webkit-inner-spin-button]:appearance-none',
            ])>
