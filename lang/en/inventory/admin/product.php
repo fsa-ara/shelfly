@@ -58,6 +58,9 @@ return [
             ],
         ],
     ],
+    'searchbar' => [
+        'placeholder' => 'Search by barcode',
+    ],
     'modal' => [
         'products' => [
             'button' => [

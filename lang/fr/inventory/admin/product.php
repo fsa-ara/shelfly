@@ -58,6 +58,9 @@ return [
             ],
         ],
     ],
+    'searchbar' => [
+        'placeholder' => 'Recherche par code-barres',
+    ],
     'modal' => [
         'products' => [
             'button' => [

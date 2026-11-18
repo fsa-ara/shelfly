@@ -8,6 +8,7 @@ use App\Models\Account\Profile;
 use App\Models\Inventory\Category;
 use App\Models\Inventory\Product;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,12 @@ use Throwable;
 
 class ProductController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View|JsonResponse
     {
+        if ($request->expectsJson()) {
+            return $this->searchBy($request, 'barcode');
+        }
+
         return view('inventory.admin.products', ['products' => Product::query()->paginate(30)]);
     }
 
@@ -193,5 +198,24 @@ class ProductController extends Controller
         }
 
         return $updateImage;
+    }
+
+    private function searchBy(Request $request, string $option): JsonResponse
+    {
+        $search = $request->query('search');
+
+        $products = Product::query()->get(['uuid', 'barcode']);
+
+        $products = $products->map(function ($product) {
+            return [
+                'url' => route('admin.product.edit', ['uuid' => $product->uuid]),
+                'label' => $product->barcode,
+            ];
+        });
+
+        return response()->json([
+            'route-add' => route('admin.product.add'),
+            'data' => $products,
+        ]);
     }
 }
