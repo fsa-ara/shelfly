@@ -8,6 +8,7 @@ use App\Models\Account\Profile;
 use App\Models\Inventory\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -17,9 +18,15 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View|JsonResponse
     {
-        return view('inventory.admin.categories', ['categories' => $this->getLocalizedCategories()]);
+        $categories = $this->getLocalizedCategories();
+
+        if ($request->expectsJson()) {
+            return $this->searchBy($request, 'name');
+        }
+
+        return view('inventory.admin.categories', ['categories' => $categories]);
     }
 
     public function add(): View
@@ -202,5 +209,33 @@ class CategoryController extends Controller
         }
 
         return $data;
+    }
+
+    private function searchBy(Request $request, string $option): JsonResponse
+    {
+        $search = $request->query('search');
+        $search = Str::ascii(mb_strtolower($search));
+
+        $categories = Category::with('translations')->get();
+
+        $categories = $categories->filter(function ($category) use ($search, $option) {
+            return $category->translations->contains(function ($translation) use ($search, $option) {
+                return str_contains(Str::ascii(mb_strtolower($translation->$option)), $search);
+            });
+        })->values();
+
+        $categories = $categories->map(function ($category) {
+            return $category->translations->map(function ($translation) use ($category) {
+                return [
+                    'url' => route('admin.category.edit', ['uuid' => $category->uuid]),
+                    'label' => $translation->name,
+                ];
+            });
+        })->flatten(1);
+
+        return response()->json([
+            'route-add' => route('admin.category.add'),
+            'data' => $categories,
+        ]);
     }
 }

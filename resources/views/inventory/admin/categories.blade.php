@@ -6,10 +6,25 @@
     <div @class(['mb-16 text-center'])>
         <p>{{ __('inventory/admin/category.description.subheading.categories') }}</p>
     </div>
-    <div @class([
+    <nav @class([
         'bg-slate-100/25 dark:bg-slate-900/25',
         'backdrop-blur-lg flex gap-2 h-12 mb-8 min-w-max -mx-4 px-8 py-2 sticky top-0',
     ])>
+        <button type="button"
+                command="show-modal"
+                commandfor="searchbar-dialog"
+                @class([
+                    'focus:outline-sky-500',
+                    'hover:bg-black dark:hover:bg-white',
+                    'hover:text-white dark:hover:text-black',
+                    'aspect-square cursor-pointer flex h-full items-center justify-center rounded-lg',
+                    'focus:outline-1',
+                ])>
+            <div @class(['h-6'])>
+                <x-icon viewBox="0 0 24 24"
+                        component="icon.search" />
+            </div>
+        </button>
         <a href="{{ route('admin.category.add') }}"
            @class([
                'focus:outline-sky-500',
@@ -39,7 +54,7 @@
                 </div>
             </button>
         @endif
-    </div>
+    </nav>
     <x-layout.category.list>
         @if ($categories->isEmpty())
             <div @class(['col-span-full flex h-32 items-center justify-center'])>
@@ -71,6 +86,9 @@
                 </x-card.category>
             @endforeach
         @endif
+        <x-modal.searchbar id="searchbar-dialog"
+                           data-search-route="{{ route('admin.categories') }}"
+                           :placeholder="__('inventory/admin/category.searchbar.placeholder')" />
         <x-modal.dialog id="categories-delete-dialog">
             <div @class(['flex flex-col my-8'])>
                 <div>

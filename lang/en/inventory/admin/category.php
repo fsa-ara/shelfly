@@ -48,6 +48,9 @@ return [
             ],
         ],
     ],
+    'searchbar' => [
+        'placeholder' => 'Search by name',
+    ],
     'modal' => [
         'categories' => [
             'button' => [

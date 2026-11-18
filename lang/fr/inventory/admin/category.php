@@ -48,6 +48,9 @@ return [
             ],
         ],
     ],
+    'searchbar' => [
+        'placeholder' => 'Recherche par nom',
+    ],
     'modal' => [
         'categories' => [
             'button' => [
