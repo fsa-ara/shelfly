@@ -60,15 +60,15 @@ export class Searchbar {
             const label = this.#normalize(el.label);
             const value = this.#normalize(text);
 
-            return label.includes(value);
+            return label ? label.includes(value) : '';
         });
 
         this.#display(json, text, results);
     };
 
     #display = (json, text, results) => {
-        this.#noResults.classList.toggle('hidden', results.length > 0);
-        this.#itemsResult.classList.toggle('hidden', results.length === 0 || text.length < 1);
+        this.#noResults.classList.toggle('hidden', results.length > 0 || text.length < 1);
+        this.#itemsResult.classList.toggle('hidden', results.length < 1 || text.length < 1);
         this.#itemsResult.replaceChildren();
 
         results.forEach((el) => {
@@ -88,10 +88,12 @@ export class Searchbar {
     };
 
     #normalize = (value) => {
-        return value
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
+        if (value) {
+            return value
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');
+        }
     };
 
     #highlight = (span, text, el) => {
