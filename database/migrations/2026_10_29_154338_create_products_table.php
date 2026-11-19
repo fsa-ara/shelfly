@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name', 128);
             $table->integer('unit_count')->nullable();
             $table->integer('measure_value')->nullable();
-            $table->string('measure_unit')->nullable();
+            $table->string('measure_unit', 8)->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
