@@ -38,3 +38,7 @@ dve@{ shape: rounded, label: "Display verification error" }
 rtip@{ shape: rounded, label: "Redirect to intended page" }
 evs@{ shape: rounded, label: "Email verification successful" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

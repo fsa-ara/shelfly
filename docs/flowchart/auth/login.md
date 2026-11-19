@@ -34,3 +34,7 @@ cps@{ shape: rounded, label: "Create persistent session" }
 rtip@{ shape: rounded, label: "Redirect to intended page" }
 ls@{ shape: rounded, label: "Login successful" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

@@ -28,3 +28,7 @@ dve@{ shape: rounded, label: "Display validation error" }
 sprl@{ shape: rounded, label: "Send password reset link" }
 dsm@{ shape: rounded, label: "Display success message" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

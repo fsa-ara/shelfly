@@ -28,3 +28,7 @@ gnsi@{ shape: rounded, label: "Generate new session ID" }
 rtvnp@{ shape: rounded, label: "Redirect to verification notice page" }
 cas@{ shape: rounded, label: "Create account successful" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

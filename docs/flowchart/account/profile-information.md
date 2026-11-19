@@ -30,3 +30,7 @@ dve@{ shape: rounded, label: "Display validation error" }
 upi@{ shape: rounded, label: "Update profile information" }
 dsm@{ shape: rounded, label: "Display success message" }
 ```
+
+---
+
+- [Return to documentation](../index.md)
