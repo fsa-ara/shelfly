@@ -5,7 +5,7 @@
                hidden />
         <input aria-required="{{ $attributes['required'] ? 'true' : 'false' }}"
                {{ $attributes }}
-               @class(['sr-only'])>
+               @class(['sr-only']) />
         <label data-dropzone
                data-dragging="false"
                for="{{ $attributes['id'] }}"

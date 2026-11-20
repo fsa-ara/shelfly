@@ -10,7 +10,7 @@
                    'border-current',
                    'checked:border-transparent',
                    'absolute appearance-none border cursor-pointer inset-0 outline-none rounded-full z-2',
-               ])>
+               ]) />
         <div @class([
             'bg-transparent',
             'text-transparent',

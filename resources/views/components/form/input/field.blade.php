@@ -10,7 +10,7 @@
                'relative border-b h-12 outline-none pt-4 w-full z-10',
                '[[type=number]]:[appearance:_textfield] [[type=number]]:m-0 [[type=number]]:pr-8',
                '[[type=number]::-webkit-inner-spin-button]:appearance-none',
-           ])>
+           ]) />
     <label for="{{ $attributes['id'] }}"
            @class([
                'text-slate-500' => !$isInvalid,

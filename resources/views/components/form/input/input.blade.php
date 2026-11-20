@@ -19,5 +19,5 @@
 
     @default
         <input aria-required="{{ $attributes['required'] ? 'true' : 'false' }}"
-               {{ $attributes }}>
+               {{ $attributes }} />
 @endswitch
