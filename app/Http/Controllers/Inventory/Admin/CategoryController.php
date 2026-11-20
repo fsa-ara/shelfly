@@ -18,12 +18,16 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function index(Request $request): View|JsonResponse
+    public function index(Request $request): View|RedirectResponse|JsonResponse
     {
         $categories = $this->getLocalizedCategories();
 
         if ($request->expectsJson()) {
             return $this->searchBy($request, 'name');
+        }
+
+        if ($categories->currentPage() > $categories->lastPage()) {
+            return redirect()->route('admin.categories', ['page' => $categories->lastPage()]);
         }
 
         return view('inventory.admin.categories', ['categories' => $categories]);

@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -20,13 +21,19 @@ use Throwable;
 
 class ProductController extends Controller
 {
-    public function index(Request $request): View|JsonResponse
+    public function index(Request $request): View|RedirectResponse|JsonResponse
     {
+        $products = $this->getPagination(30);
+
         if ($request->expectsJson()) {
-            return $this->searchBy($request, 'barcode');
+            return $this->searchBy('barcode');
         }
 
-        return view('inventory.admin.products', ['products' => Product::query()->paginate(30)]);
+        if ($products->currentPage() > $products->lastPage()) {
+            return redirect()->route('admin.products', ['page' => $products->lastPage()]);
+        }
+
+        return view('inventory.admin.products', ['products' => $products]);
     }
 
     public function add(): View
@@ -200,11 +207,9 @@ class ProductController extends Controller
         return $updateImage;
     }
 
-    private function searchBy(Request $request, string $option): JsonResponse
+    private function searchBy(string $option): JsonResponse
     {
-        $search = $request->query('search');
-
-        $products = Product::query()->get(['uuid', 'barcode']);
+        $products = Product::query()->get(['uuid', $option]);
 
         $products = $products->map(function ($product) {
             return [
@@ -217,5 +222,10 @@ class ProductController extends Controller
             'route-add' => route('admin.product.add'),
             'data' => $products,
         ]);
+    }
+
+    private function getPagination(int $count): LengthAwarePaginator
+    {
+        return Product::query()->paginate($count);
     }
 }
