@@ -33,9 +33,7 @@ export class Sidebar {
         this.#trigger.ariaLabel = this.#labelling();
     };
 
-    #reset = (e) => {
-        console.log(e);
-
+    #reset = () => {
         if (this.#isExpanded()) {
             document.body.classList.remove('overflow-hidden');
 
