@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\Admin\ProductRequest;
+use App\Http\Requests\Inventory\FilterRequest;
 use App\Models\Account\Profile;
 use App\Models\Inventory\Category;
 use App\Models\Inventory\Product;
@@ -21,19 +22,35 @@ use Throwable;
 
 class ProductController extends Controller
 {
-    public function index(Request $request): View|RedirectResponse|JsonResponse
+    public function index(FilterRequest $request): View|RedirectResponse|JsonResponse
     {
-        $products = $this->getPagination(30);
-
         if ($request->expectsJson()) {
             return $this->searchBy('barcode');
         }
 
+        $filters = $request->validated();
+
+        $products = $this->getPagination($filters, 30);
+
+        $brands = Product::query()->distinct()->orderBy('brand')->pluck('brand', 'brand');
+
+        $productsFilter = [
+            'brands' => $brands->all(),
+            'categories' => $this->getLocalizedCategories(),
+        ];
+
         if ($products->currentPage() > $products->lastPage()) {
-            return redirect()->route('admin.products', ['page' => $products->lastPage()]);
+            return redirect()->route('admin.products', [
+                ...$request->query(),
+                'productsFilter' => $productsFilter,
+                'page' => $products->lastPage()
+            ]);
         }
 
-        return view('inventory.admin.products', ['products' => $products]);
+        return view('inventory.admin.products', [
+            'products' => $products,
+            'productsFilter' => $productsFilter,
+        ]);
     }
 
     public function add(): View
@@ -189,6 +206,8 @@ class ProductController extends Controller
             ];
         }
 
+        asort($data, SORT_NATURAL | SORT_FLAG_CASE);
+
         return $data;
     }
 
@@ -224,8 +243,14 @@ class ProductController extends Controller
         ]);
     }
 
-    private function getPagination(int $count): LengthAwarePaginator
+    private function getPagination(array $filters, int $count): LengthAwarePaginator
     {
-        return Product::query()->paginate($count);
+        $query = Product::query();
+
+        $query->when($filters['brands'] ?? [], fn($query, $brands) => $query->whereIn('brand', $brands));
+
+        $query->when($filters['categories'] ?? [], fn($query, $categories) => $query->whereIn('category_id', $categories));
+
+        return $query->paginate($count)->withQueryString();
     }
 }

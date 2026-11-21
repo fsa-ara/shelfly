@@ -61,6 +61,10 @@ return [
     'searchbar' => [
         'placeholder' => 'Recherche par code-barres',
     ],
+    'filters' => [
+        'brands' => 'Marques',
+        'categories' => 'Catégories',
+    ],
     'modal' => [
         'products' => [
             'button' => [

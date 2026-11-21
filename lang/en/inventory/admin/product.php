@@ -61,6 +61,10 @@ return [
     'searchbar' => [
         'placeholder' => 'Search by barcode',
     ],
+    'filters' => [
+        'brands' => 'Brands',
+        'categories' => 'Categories',
+    ],
     'modal' => [
         'products' => [
             'button' => [
