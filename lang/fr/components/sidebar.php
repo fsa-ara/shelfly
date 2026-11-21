@@ -23,9 +23,18 @@ return [
     'auth' => [
         'greeting' => 'Salut, :username',
         'section' => [
+            'inventory' => 'Inventaire',
             'my_account' => 'Mon compte',
         ],
         'link' => [
+            'categories' => [
+                'label' => 'Accéder à la page des catégories',
+                'text' => 'Catégories',
+            ],
+            'products' => [
+                'label' => 'Accéder à la page des produits',
+                'text' => 'Produits',
+            ],
             'profile' => [
                 'label' => 'Accéder à la page de profil',
                 'text' => 'Profil',

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\Account\Profile;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -112,6 +113,8 @@ class EmailVerificationTest extends TestCase
     public function test_user_cannot_resend_email_verification_too_many_times(): void
     {
         $user = User::factory()
+            ->has(Role::factory())
+            ->has(Profile::factory())
             ->create([
                 'email_verified_at' => null,
             ]);

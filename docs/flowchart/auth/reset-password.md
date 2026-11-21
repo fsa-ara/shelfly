@@ -34,3 +34,7 @@ sdid@{ shape: rounded, label: "Save data in database" }
 dsm@{ shape: rounded, label: "Display success message" }
 rtlp@{ shape: rounded, label: "Redirect to login page" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

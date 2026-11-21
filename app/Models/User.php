@@ -33,6 +33,11 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    public function role(): HasOne
+    {
+        return $this->hasOne(Role::class);
+    }
+
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);

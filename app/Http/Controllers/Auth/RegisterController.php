@@ -31,6 +31,10 @@ class RegisterController extends Controller
                 'password' => $credentials['password'],
             ]);
 
+            $user->role()->create([
+                'admin' => false,
+            ]);
+
             $user->profile()->create([
                 'username' => $this->makeUserName(),
                 'locale' => $request->getPreferredLanguage(),
@@ -46,7 +50,9 @@ class RegisterController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('verification.notice')->with([
-            'status' => 'auth/register.status.success',
+            'status' => [
+                'success' => 'auth/register.status.success',
+            ],
         ]);
     }
 

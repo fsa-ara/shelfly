@@ -1,0 +1,138 @@
+<x-app :title="__('inventory/admin/category.title.categories')">
+    <div @class(['mb-2 mt-16', 'sm:mt-4', 'lg:mt-0'])>
+        <x-typography.heading level="1"
+                              :content="__('inventory/admin/category.heading.categories')" />
+    </div>
+    <div @class(['mb-16 text-center'])>
+        <p>{{ __('inventory/admin/category.description.subheading.categories') }}</p>
+    </div>
+    <nav @class([
+        'bg-slate-100/25 dark:bg-slate-900/25',
+        'backdrop-blur-lg flex h-12 mb-8 min-w-max -mx-4 px-8 py-2 sticky top-0',
+    ])>
+        <ul @class(['flex gap-8'])>
+            <li>
+                <button type="button"
+                        command="show-modal"
+                        commandfor="searchbar-dialog"
+                        @class([
+                            'focus:outline-sky-500',
+                            'hover:bg-black dark:hover:bg-white',
+                            'hover:text-white dark:hover:text-black',
+                            'aspect-square cursor-pointer flex h-full items-center justify-center rounded-lg',
+                            'focus:outline-1',
+                        ])>
+                    <div @class(['h-6'])>
+                        <x-icon viewBox="0 0 24 24"
+                                component="icon.search" />
+                    </div>
+                </button>
+            </li>
+            <li>
+                <a href="{{ route('admin.category.add') }}"
+                   @class([
+                       'focus:outline-sky-500',
+                       'hover:bg-sky-400 dark:hover:bg-sky-600',
+                       'hover:text-white',
+                       'aspect-square flex h-full items-center justify-center rounded-lg',
+                       'focus:outline-1',
+                   ])>
+                    <div @class(['h-6'])>
+                        <x-icon component="icon.add" />
+                    </div>
+                </a>
+            </li>
+            @if ($categories->isNotEmpty())
+                <li>
+                    <button type="button"
+                            command="show-modal"
+                            commandfor="categories-delete-dialog"
+                            @class([
+                                'focus:outline-sky-500',
+                                'hover:bg-red-400 dark:hover:bg-red-600',
+                                'hover:text-white',
+                                'aspect-square cursor-pointer flex h-full items-center justify-center rounded-lg',
+                                'focus:outline-1',
+                            ])>
+                        <div @class(['h-6'])>
+                            <x-icon viewBox="0 0 24 24"
+                                    component="icon.delete" />
+                        </div>
+                    </button>
+                </li>
+            @endif
+        </ul>
+    </nav>
+    <x-layout.category.list>
+        @if ($categories->isEmpty())
+            <div @class(['col-span-full flex h-32 items-center justify-center'])>
+                <p @class(['text-center'])>{{ __('inventory/admin/category.description.empty_categories') }}</p>
+            </div>
+        @else
+            @foreach ($categories as $category)
+                <x-card.category>
+                    <div @class(['flex justify-between gap-4 size-full'])>
+                        <div @class(['flex items-center min-w-0 pl-4'])>
+                            <p @class(['truncate'])>{{ $category->translation->name }}</p>
+                        </div>
+                        <div @class(['aspect-square h-full p-1'])>
+                            <a href="{{ route('admin.category.edit', ['uuid' => $category->uuid]) }}"
+                               @class([
+                                   'focus:outline-sky-500',
+                                   'hover:bg-slate-400 dark:hover:bg-slate-600',
+                                   'hover:text-white',
+                                   'flex items-center justify-center rounded-xl size-full',
+                                   'focus:outline-1',
+                               ])>
+                                <div @class(['h-6'])>
+                                    <x-icon viewBox="0 0 24 24"
+                                            component="icon.edit" />
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </x-card.category>
+            @endforeach
+        @endif
+        <x-modal.searchbar id="searchbar-dialog"
+                           data-search-route="{{ route('admin.categories') }}"
+                           :placeholder="__('inventory/admin/category.searchbar.placeholder')" />
+        <x-modal.dialog id="categories-delete-dialog">
+            <div @class(['flex flex-col my-8'])>
+                <div>
+                    <x-typography.heading level="1"
+                                          :content="__('inventory/admin/category.modal.categories.heading')" />
+                </div>
+                <div @class(['my-4'])>
+                    <div @class(['text-center'])>
+                        <p>{{ __('inventory/admin/category.modal.categories.question') }}</p>
+                    </div>
+                    <div @class(['text-red-700 dark:text-red-300', 'text-center'])>
+                        <p>{{ __('inventory/admin/category.modal.categories.warning') }}</p>
+                    </div>
+                    <ul @class(['list-disc mt-8 pl-4'])>
+                        @foreach (__('inventory/admin/category.modal.categories.informations') as $information)
+                            <li>{{ $information }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <x-form id="categories-delete-form"
+                        action="{{ route('admin.categories.delete') }}"
+                        method="post" />
+                <div @class(['flex gap-4'])>
+                    <x-button.danger form="categories-delete-form"
+                                     type="submit"
+                                     :text="__('inventory/admin/category.button.submit.categories.delete')" />
+                    <x-button.secondary type="button"
+                                        autofocus
+                                        command="close"
+                                        commandfor="categories-delete-dialog"
+                                        :text="__('inventory/admin/category.modal.categories.button.close')" />
+                </div>
+            </div>
+        </x-modal.dialog>
+    </x-layout.category.list>
+    {{ $categories->links('components.nav.pagination') }}
+</x-app>

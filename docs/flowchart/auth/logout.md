@@ -20,3 +20,7 @@ rtsi@{ shape: rounded, label: "Regenerate the session ID" }
 rtct@{ shape: rounded, label: "Regenerate the CSRF token" }
 rtlp@{ shape: rounded, label: "Redirect to login page" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

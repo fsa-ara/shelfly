@@ -24,7 +24,9 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended()->with([
-                'status' => 'auth/login.status.success',
+                'status' => [
+                    'success' => 'auth/login.status.success',
+                ],
             ]);
         }
 

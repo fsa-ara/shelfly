@@ -31,11 +31,15 @@ The goal of this project is to build a complete inventory management application
 - ✅ Information
 - ✅ Security
 
+### Admin
+
+- ✅ Category management
+- ✅ Product management
+
 ### Overview
 
 - 🚧 Dashboard (user)
 - 🚧 Dashboard (admin)
-- 🚧 Product management (admin)
 - 🚧 Inventory management (user)
 - 🚧 Barcode scanner (user)
 

@@ -4,7 +4,7 @@
     'lg:relative',
 ])>
     <div @class(['bg-white dark:bg-black', 'size-full'])>
-        <nav @class(['px-2 size-full'])>
+        <nav @class(['px-2 size-full min-w-max'])>
             <ul @class(['flex size-full justify-between'])>
                 <li @class(['flex items-center'])>
                     <a href="{{ route('home') }}"

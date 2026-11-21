@@ -17,7 +17,7 @@
             <x-header />
             <x-sidebar />
             <div @class([
-                'flex flex-col justify-between overflow-y-scroll',
+                'flex flex-col justify-between overflow-y-scroll transform-gpu',
                 'col-start-1 row-start-2',
                 'lg:col-start-2 lg:row-start-1 lg:row-span-full',
             ])>

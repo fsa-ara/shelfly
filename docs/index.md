@@ -2,7 +2,9 @@
 
 ## Entity relationship
 
-- [Database](entity-relationship/database.md)
+- [Users](entity-relationship/users.md)
+- [Categories](entity-relationship/categories.md)
+- [Products](entity-relationship/products.md)
 
 ## Flowchart
 
@@ -22,6 +24,24 @@
 - [Register](flowchart/auth/register.md)
 - [Email verification](flowchart/auth/email-verification.md)
 - [Logout](flowchart/auth/logout.md)
+
+### Inventory
+
+#### Admin
+
+##### Category
+
+- [Create](flowchart/inventory/admin/category-create.md)
+- [Update](flowchart/inventory/admin/category-update.md)
+- [Delete](flowchart/inventory/admin/category-delete.md)
+- [All delete](flowchart/inventory/admin/category-all-delete.md)
+
+##### Product
+
+- [Create](flowchart/inventory/admin/product-create.md)
+- [Update](flowchart/inventory/admin/product-update.md)
+- [Delete](flowchart/inventory/admin/product-delete.md)
+- [All delete](flowchart/inventory/admin/product-all-delete.md)
 
 ---
 
