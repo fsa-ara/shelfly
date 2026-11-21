@@ -27,3 +27,7 @@ duard@{ shape: rounded, label: "Delete user and related data" }
 dsm@{ shape: rounded, label: "Display success message" }
 rthp@{ shape: rounded, label: "Redirect to home page" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

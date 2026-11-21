@@ -1,7 +1,7 @@
 @session('status')
     <div data-toast
          @class([
-             'fixed flex gap-4 inset-x-4 mx-auto',
+             'fixed flex gap-4 inset-x-4 mx-auto z-30',
              'opacity-0 translate-y-4',
              'starting:data-toast:opacity-0 starting:data-toast:translate-y-0',
              'data-toast:opacity-100 data-toast:translate-y-4',

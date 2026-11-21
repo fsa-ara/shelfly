@@ -32,3 +32,7 @@ dve@{ shape: rounded, label: "Display validation error" }
 uup@{ shape: rounded, label: "Update user password" }
 dsm@{ shape: rounded, label: "Display success message" }
 ```
+
+---
+
+- [Return to documentation](../index.md)

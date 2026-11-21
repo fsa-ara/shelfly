@@ -53,6 +53,5 @@
                 </div>
             </div>
         </x-modal.dialog>
-
     </x-card.profile>
 </x-app>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('username', 64);
-            $table->char('locale', 64);
+            $table->string('locale', 16);
             $table->timestamps();
         });
     }

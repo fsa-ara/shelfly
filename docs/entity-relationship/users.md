@@ -1,9 +1,10 @@
-# Database
+# Users
 
 ```mermaid
 erDiagram
 
-    USERS ||--|| PROFILES : has
+    USERS ||--|| PROFILES : "has one"
+    USERS ||--|| ROLES : "has one"
 
     USERS {
         bigint id PK
@@ -20,8 +21,20 @@ erDiagram
         bigint id PK
         bigint user_id FK, UK
         varchar(64) username
-        char(64) locale
+        varchar(16) locale
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    ROLES {
+        bigint id PK
+        bigint user_id FK, UK
+        tinyint(1) admin
         timestamp created_at
         timestamp updated_at
     }
 ```
+
+---
+
+- [Return to documentation](../index.md)

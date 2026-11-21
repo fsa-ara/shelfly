@@ -7,7 +7,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\GlideController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Inventory\Admin\CategoryController;
+use App\Http\Controllers\Inventory\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('localization')
@@ -57,9 +60,9 @@ Route::middleware('localization')
                     });
             });
 
-        Route::middleware(['auth', 'verified'])
+        Route::prefix('account')
             ->group(function () {
-                Route::prefix('account')
+                Route::middleware(['auth', 'verified'])
                     ->group(function () {
                         Route::get('/profile', [ProfileController::class, 'index'])
                             ->name('profile');
@@ -71,4 +74,43 @@ Route::middleware('localization')
                             ->name('profile.delete');
                     });
             });
+
+        Route::prefix('admin')
+            ->group(function () {
+                Route::middleware(['auth', 'admin'])
+                    ->group(function () {
+                        Route::get('/categories', [CategoryController::class, 'index'])
+                            ->name('admin.categories');
+                        Route::post('/categories/delete', [CategoryController::class, 'allDelete'])
+                            ->name('admin.categories.delete');
+                        Route::get('/category/add', [CategoryController::class, 'add'])
+                            ->name('admin.category.add');
+                        Route::post('/category/create', [CategoryController::class, 'create'])
+                            ->name('admin.category.create');
+                        Route::get('/category/edit/{uuid}', [CategoryController::class, 'edit'])
+                            ->name('admin.category.edit');
+                        Route::post('/category/edit/{uuid}', [CategoryController::class, 'update'])
+                            ->name('admin.category.update');
+                        Route::post('/category/delete/{uuid}', [CategoryController::class, 'delete'])
+                            ->name('admin.category.delete');
+
+                        Route::get('/products', [ProductController::class, 'index'])
+                            ->name('admin.products');
+                        Route::post('/products/delete', [ProductController::class, 'allDelete'])
+                            ->name('admin.products.delete');
+                        Route::get('/product/add', [ProductController::class, 'add'])
+                            ->name('admin.product.add');
+                        Route::post('/product/create', [ProductController::class, 'create'])
+                            ->name('admin.product.create');
+                        Route::get('/product/edit/{uuid}', [ProductController::class, 'edit'])
+                            ->name('admin.product.edit');
+                        Route::post('/product/edit/{uuid}', [ProductController::class, 'update'])
+                            ->name('admin.product.update');
+                        Route::post('/product/delete/{uuid}', [ProductController::class, 'delete'])
+                            ->name('admin.product.delete');
+                    });
+            });
     });
+
+Route::get('/storage/images/{path}', [GlideController::class, 'show'])
+    ->where('path', '.*');
