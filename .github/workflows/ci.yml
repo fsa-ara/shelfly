@@ -1,0 +1,35 @@
+name: Shelfly CI
+
+env:
+    php_version: '8.4'
+
+on:
+    push:
+        branches:
+            - dev
+            - main
+    pull_request:
+        branches:
+            - dev
+            - main
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              # https://github.com/actions/checkout/releases
+              uses: actions/checkout@v7
+
+            - name: Initialize PHP ${{ env.php_version }}
+              # https://github.com/shivammathur/setup-php/releases
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ env.php_version }}
+                  extensions: pdo_sqlite
+
+            - name: Composer install
+              run: composer install
+
+            - name: Composer test
+              run: composer test
