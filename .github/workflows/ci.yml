@@ -2,6 +2,7 @@ name: Shelfly CI
 
 env:
     php_version: '8.4'
+    node_version: '24'
 
 on:
     push:
@@ -27,6 +28,18 @@ jobs:
               with:
                   php-version: ${{ env.php_version }}
                   extensions: pdo_sqlite
+
+            - name: Initialize Node.js
+              # https://github.com/actions/setup-node/releases
+              uses: actions/setup-node@v7
+              with:
+                  node-version: ${{ env.node_version }}
+
+            - name: Install Node dependencies
+              run: npm ci
+
+            - name: Build frontend assets
+              run: npm run build
 
             - name: Composer install
               run: composer install
