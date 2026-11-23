@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->uuid()->unique();
-            $table->string('barcode', 64)->unique();
-            $table->string('brand', 128);
+            $table->string('barcode', 64)->unique()->nullable();
+            $table->string('brand', 128)->nullable();
             $table->string('name', 128);
             $table->integer('unit_count')->nullable();
             $table->integer('measure_value')->nullable();

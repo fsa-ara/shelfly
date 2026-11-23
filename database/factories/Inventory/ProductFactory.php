@@ -19,7 +19,7 @@ class ProductFactory extends Factory
     {
         return [
             'uuid' => fake()->unique()->uuid(),
-            'barcode' => fake()->numerify('#############'),
+            'barcode' => fake()->unique()->numerify('#############'),
             'brand' => fake()->company(),
             'name' => fake()->words(10, true),
             'unit_count' => fake()->numberBetween(1, 50),

@@ -32,5 +32,13 @@ class UserSeeder extends Seeder
                 'email' => 'john.doe@icloud.com',
                 'password' => 'buhriz-geZku4-tyvjud',
             ]);
+
+        User::factory()
+            ->has(Role::factory())
+            ->has(Profile::factory())
+            ->count(10)
+            ->create([
+                'password' => '123',
+            ]);
     }
 }

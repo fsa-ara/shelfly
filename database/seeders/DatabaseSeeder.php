@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Database\Seeders\Inventory\CategorySeeder;
+use Database\Seeders\Inventory\InventorySeeder;
 use Database\Seeders\Inventory\ProductSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
+            InventorySeeder::class,
         ]);
     }
 }
